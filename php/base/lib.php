@@ -1,10 +1,10 @@
 <?php
 //Criar as constantes com as credencias de acesso ao banco de dados
-define('HOST', 'hard.uniguacu.edu.br');
-define('USER', '2016201393');
-define('PASS', '1393');
-define('DBNAME', '2016201393');
-define('PORT', '5432');
+define('HOST', '');
+define('USER', '');
+define('PASS', '');
+define('DBNAME', '');
+define('PORT', '');
 
 
 class Conexao {
