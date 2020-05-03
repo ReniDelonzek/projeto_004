@@ -1,5 +1,5 @@
 <?php
-//Criar as constantes com as credencias de acesso ao banco de dados
+//Criar as constantes com as credencias de acesso ao banco de dados.
 define('HOST', '');
 define('USER', '');
 define('PASS', '');
