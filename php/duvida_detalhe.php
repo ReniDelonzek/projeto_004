@@ -18,7 +18,7 @@
   <link rel="stylesheet" type="text/css" href="../css/duvida_detalhe.css" />
 
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-  <script>
+  <script> 
     function getQuery(q) {
         return (window.location.search.match(new RegExp('[?&]' + q + '=([^&]+)')) || [, null])[1];
     }
