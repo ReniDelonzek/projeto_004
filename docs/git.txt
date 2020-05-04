@@ -5,7 +5,10 @@ git checkout "back"
 git pull
 
 --Logo após as alterações do código:
+
 git add .
 git commit -m "Mensagem do commit" 
---Mensagem seguindo a convensão em descrita em: https://www.conventionalcommits.org/en/v1.0.0-beta.2/
+--Mensagem seguindo a convensão descrita em: https://www.conventionalcommits.org/en/v1.0.0-beta.2/
+
+git pull
 git push
