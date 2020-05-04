@@ -1,10 +1,10 @@
 <?php
-//Criar as constantes com as credencias de acesso ao banco de dados.
-define('HOST', '');
-define('USER', '');
-define('PASS', '');
-define('DBNAME', '');
-define('PORT', '');
+//Criar as constantes com as credencias de acesso ao banco de dados
+define('HOST', 'host');
+define('USER', 'usuario');
+define('PASS', 'senha');
+define('DBNAME', 'nome do db');
+define('PORT', 'porta');
 
 
 class Conexao {
@@ -524,13 +524,13 @@ class ListagemDuvida{
         $usuario = new Usuario();
         $status = new Status();
         $categoria = new Categoria();
-        //var_dump($this->duvida);
+        
         $this -> buffer ="<div class=\"card mb-4 box-shadow\"
         style=\"width: 327%; border-radius: 10px;box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.22);text-align: center;\">";
         $this -> buffer .= "<div class=\"card-body\" style=\"text-align: left;\">";
         $this -> buffer .= "<h4 class=\"card-title pricing-card-title font-weight-bold mb-3\" style=\"text-align: left;\">{$this -> duvida -> getTitulo()}</h4>";
         $this -> buffer .= "<h6 class=\"card-title pricing-card-title font-weight-bold mb-3\" style=\"text-align: left;\"><img
-              src=\"imagens/icons/usuario.png\" class=\"mr-3\" alt=\"\" > Por {$usuario -> listById($this -> duvida -> getusuarioId()) -> getNome()}</h6>";
+              src=\"../imagens/icons/usuario.png\" class=\"mr-3\" alt=\"\" > Por {$usuario -> listById($this -> duvida -> getusuarioId()) -> getNome()}</h6>";
         $this -> buffer .="<h6 class=\"card-title pricing-card-title mb-0\">{$this -> duvida -> getDescricao()}</h6>";
         $this -> buffer .= "<button type=\"button\" class=\"chip btn btn-primary btn-sm primary_color\" style=\"border-color: transparent; border-radius: 20px;height: 7%;font-size: 0.5em;  padding: 8px 16px 8px 16px; margin: 8px\">REDES</button>";
         $this -> buffer .= "<button type=\"button\" class=\"chip btn btn-primary btn-sm primary_color\" style=\"border-color: transparent; border-radius: 20px;height: 7%;font-size: 0.5em;  padding: 8px 16px 8px 16px;\">REDES</button>";
