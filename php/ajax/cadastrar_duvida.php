@@ -17,7 +17,7 @@ echo "|";
 
 $duv = new Duvida($titulo, $duvida, $categoria, $usuario, $status, 0);
 $duv -> save();
-echo $duv-> getTitulo();
+
 
 
 ?>

@@ -424,7 +424,7 @@ class Duvida {
         $stmt = Conexao::getInstance() -> prepare($sql);
         $stmt -> execute();
         while ($row = $stmt -> fetch()) {
-            return new Duvida($row['id'], $row['titulo'], $row['descricao'],$row['categoria'], $row['usuario'], $row['status']);
+            return new Duvida($row['titulo'], $row['descricao'],$row['categoria'], $row['usuario'], $row['status'], $row['id']);
         }
 
     }
@@ -452,7 +452,7 @@ class Duvida {
         $stmt = Conexao::getInstance() -> prepare($sql);
         $stmt -> execute();
         while ($row = $stmt -> fetch()) {            
-            array_push($duvidas, new Duvida($row['id'], $row['titulo'], $row['descricao'],$row['categoria'], $row['usuario'], $row['status']));
+            array_push($duvidas, new Duvida( $row['titulo'], $row['descricao'],$row['categoria'], $row['usuario'], $row['status'], $row['id']));
         }
         return $duvidas;
 
@@ -577,6 +577,58 @@ class ListaCardDuvida{
         echo $this -> render();
     }
     
+}
+
+class ListaResposta{
+    private $idDuvida;
+
+    function __construct($idDuvida){ 
+        $this -> idDuvida = $idDuvida;
+    
+    }
+    function render(){
+        $sql = 
+        "select 
+        duvida_resposta.id as id,
+        duvida.id,
+        duvida_resposta.duvida_id,
+        duvida.descricao,
+        duvida_resposta.conteudo as conteudo,
+        usuario.nome as nome,
+        duvida.*
+         
+        from 
+            duvida_resposta
+        inner join usuario on usuario.id = duvida_resposta.usuario_id
+        inner join duvida on duvida.id = duvida_resposta.duvida_id
+        where duvida.id = {$this -> idDuvida}";       
+
+        $stmt = Conexao::getInstance() -> prepare($sql);
+        $stmt -> execute();
+        $this -> buffer  = "<div class=\"card mb-4 box-shadow\" style=\"width: 327%;border-radius: 10px;box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.22);text-align: center;\">";
+        $this -> buffer .= "<div class=\"card-body\">";
+            $this -> buffer .= "<h4 class=\"card-title pricing-card-title font-weight-bold mb-3\" style=\"text-align: left;\">RESPOSTAS:</h4>";
+        while ($row = $stmt -> fetch()) {            
+            //echo "<h1>{$row['conteudo']}</h1>";
+            
+            
+            $this -> buffer .= "<div class=\"card mb-4 box-shadow\"";
+            $this -> buffer .= "style=\"background-color: rgb(232, 238, 250); border-radius: 10px; box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.22); text-align: center;\">";
+            $this -> buffer .= "<div class=\"card-body\" style=\"text-align: left;\">";
+            $this -> buffer .= "<h6 class=\"card-title pricing-card-title font-weight-bold mb-3\" style=\"text-align: left;\">";
+            $this -> buffer .= "<img src=\"../imagens/icons/usuario.png\" class=\"mr-3\" alt=\"\"> {$row['nome']}";
+            $this -> buffer .= "</h6>";
+            $this -> buffer .= "<h6 class=\"card-title pricing-card-title mb-0\">{$row['conteudo']}</h6>";
+            $this -> buffer .= "</div>";
+            $this -> buffer .= "</div>"; 
+        }
+        
+
+        return $this -> buffer;
+    }
+    function show(){
+        echo $this -> render();
+    }
 }
 
 class ListaUsuario{
