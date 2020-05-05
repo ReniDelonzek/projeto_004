@@ -12,7 +12,7 @@
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css"></script>
-    <link rel="stylesheet" type="text/css" href=".  ./css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
     <title>Perguntas</title>
 </head>
 <body>
@@ -65,7 +65,7 @@ function salvar(){
     
 
     $.ajax({        
-        url:'salvar.php',
+        url:'../php/ajax/cadastrar_duvida.php',
         type: 'POST',
         data: dados,
         success: function(data){
