@@ -1,11 +1,10 @@
 <?php
 //Criar as constantes com as credencias de acesso ao banco de dados
-define('HOST', 'host');
-define('USER', 'usuario');
-define('PASS', 'senha');
-define('DBNAME', 'nome do db');
-define('PORT', 'porta');
-
+define('HOST', 'hard.uniguacu.edu.br');
+define('USER', '2016201393');
+define('PASS', '1393');
+define('DBNAME', '2016201393');
+define('PORT', '5432');
 
 class Conexao {
     //Cria a conexão com banco de dados usando o PDO e a porta do banco de dados
@@ -326,7 +325,7 @@ class Duvida {
     private $usuario_id;
     private $status_id;
 
-    function __construct($id = 0, $titulo = "", $descricao = "", $categoria_id =    0, $usuario_id = 0, $status_id=0){
+    function __construct($titulo = "", $descricao = "", $categoria_id =    0, $usuario_id = 0, $status_id=0,$id = 0){
         $this -> id = $id;
         $this -> titulo = $titulo;
         $this -> descricao = $descricao;
@@ -382,6 +381,7 @@ class Duvida {
 
         $sql = "insert into  duvida (titulo, descricao, categoria_id,usuario_id, status_id)
         values('{$this ->titulo}', '{$this->descricao}', {$this->categoria_id}, {$this->usuario_id}, {$this ->status_id})";         
+        echo $sql;
         $stmt = Conexao::getInstance() -> prepare($sql);
         $stmt -> execute();
     }
@@ -564,7 +564,7 @@ class ListaCardDuvida{
                 $this -> buffer .= "</div>";
                 $this -> buffer .="<div class=\"card-deck mb-3 text-center\">";
             }
-            $card = new Card($duv -> getTitulo(), $duv -> getDescricao(), $link = "php/duvida_detalhe.php?id=".$duv -> getId());
+            $card = new Card($duv -> getTitulo(), $duv -> getDescricao(), $link = "html/duvida_detalhe.html?id=".$duv -> getId());
             $this -> buffer .=  $card -> render();
             $i++;
         }
