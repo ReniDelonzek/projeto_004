@@ -32,10 +32,10 @@ class Conexao {
 //Classe de conexao no padrao do clevao
 class Conexao2 {
     var $cnx; 
-    var $HOST = "hard.uniguacu.edu.br";
-    var $DBNAME = "2016201393";
-    var $USER = "2016201393";
-    var $PASSWORD = "1393";
+    var $HOST = "";
+    var $DBNAME = "";
+    var $USER = "";
+    var $PASSWORD = "";
     function __construct() {
         $this->cnx=pg_connect("
         host=$this->HOST 
