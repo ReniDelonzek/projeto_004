@@ -1,10 +1,10 @@
 <?php
 //Criar as constantes com as credencias de acesso ao banco de dados.
-define('HOST', '');
-define('USER', '');
-define('PASS', '');
-define('DBNAME', '');
-define('PORT', '');
+define('HOST', 'hard.uniguacu.edu.br');
+define('USER', '2016201393');
+define('PASS', '1393');
+define('DBNAME', '2016201393');
+define('PORT', '5432');
 
 
 class Conexao {
@@ -26,7 +26,34 @@ class Conexao {
         }
         return self::$instance;
     }
+ 
 }
+
+//Classe de conexao no padrao do clevao
+class Conexao2 {
+    var $cnx; 
+    var $HOST = "hard.uniguacu.edu.br";
+    var $DBNAME = "2016201393";
+    var $USER = "2016201393";
+    var $PASSWORD = "1393";
+    function __construct() {
+        $this->cnx=pg_connect("
+        host=$this->HOST 
+        dbname=$this->DBNAME 
+        user=$this->USER 
+        password=$this->PASSWORD") or die ("Nao conectou");
+    }
+    function valida($email,$senha){
+        $res =@pg_query("SELECT * FROM usuario WHERE
+         email = '$email' AND senha = '$senha' ");
+        if($reg=pg_fetch_object($res)){
+            echo("válido");
+        }else{
+            echo("inválido");
+        }
+    }
+}
+
 
 class Utils {
     public static function criptografar($string){
