@@ -34,4 +34,21 @@
 		    }
 		}
 	}
+	class cardCategoria{
+		var $cnx;
+		
+		//Iniciando conexão
+		function __construct($cnx) {
+			$this->cnx = $cnx;
+		}
+		
+		function render(){
+			$res = pg_query("SELECT id,descricao FROM categoria");
+			while($categoria = pg_fetch_object($res)){
+				echo " <li><input class=\"card\" name=\"categorias[]\" type=\"checkbox\" id=\"$categoria->descricao\" value=\"$categoria->descricao\"><label for=\"$categoria->descricao\">$categoria->descricao</label></li> ";
+			}
+			
+		}
+		
+	}
 ?>
