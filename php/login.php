@@ -11,25 +11,25 @@
 	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 	<script>
 		function chama(){
-			var email = $("#email").val();
-			var senha = $("#senha").val();
-			data={email : email,senha: senha};
+			/*var email = $("#email").val();
+			var senha = $("#senha").val();*/
+			dados = {'email': $("#email").val(),'senha': $("#senha").val()}
 			$.ajax({
 				url : "ajax/fazer_login.php",
-				type : 'post',
-				data :data,
-					beforeSend : function(){
-						
+				data: dados,
+				method : 'post',
+					success : function(data){
+						if(data == "Invalido"){
+							alert("Usuario Invalido");
+						}else if(data == "Valido"){
+							//alert("Usuario Valido");
+							window.location="../index.php";
+						}else{
+							alert("Erro Inesperado");
+						}
 					},
-				}).done(function(msg){
-				console.log(msg)
-				if(msg=="válido"){
-						alert("logado");
-					}else{
-						alert("negado")
-					}
-				});
-			
+				})
+			 
 		}
 	</script>
 	</head>
