@@ -26,14 +26,12 @@
             <h4 class="card-title pricing-card-title font-weight-bold mb-3">ESCOLHA DE TEMAS</h4>
             <form action="teste.php" method="POST">
               <ul class="checkTags" id="tags">
-                <li><input class="card" name="categorias[]" type="checkbox" id="MANUTENÇÃO" value="MANUTENÇÃO"><label for="MANUTENÇÃO">MANUTENÇÃO</label></li>
-                <li><input class="card" name="categorias[]" type="checkbox" id="HARDWARE" value="HARDWARE"><label for="HARDWARE">HARDWARE</label></li>
-                <li><input class="card" name="categorias[]" type="checkbox" id="SOFTWARE" value="SOFTWARE"><label for="SOFTWARE">SOFTWARE</label></li>
-                <li><input class="card" name="categorias[]" type="checkbox" id="REDES" value="REDES"><label for="REDES">REDES</label></li>
-                <li><input class="card" name="categorias[]" type="checkbox" id="PROGRAMAÇÃO" value="PROGRAMAÇÃO"><label for="PROGRAMAÇÃO">PROGRAMAÇÃO</label></li>
-                <li><input class="card" name="categorias[]" type="checkbox" id="BANCO DE DADOS" value="BANCO DE DADOS"><label for="BANCO DE DADOS">BANCO DE DADOS</label></li>
-                <li><input class="card" name="categorias[]" type="checkbox" id="ROBOTICA" value="ROBOTICA"><label for="ROBOTICA">ROBOTICA</label></li>
-                <li><input class="card" name="categorias[]" type="checkbox" id="TGA" value="TEORIA GERAL DA ADMINISTRAÇÃO"><label for="TGA">TEORIA GERAL DA ADMINISTRAÇÃO</label></li>  
+               <?php
+				include_once "php/base/lib2.php";
+				$categoria = new cardCategoria(new Conexao());
+				$categoria->render();
+				
+			  ?>
               </ul>
               <div class="buttons_card">
                 <input type="submit" value="Confirmar seleção" class="myButton">
