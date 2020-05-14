@@ -16,6 +16,7 @@
 
   <link rel="stylesheet" type="text/css" href="../css/style.css" />
   <link rel="stylesheet" type="text/css" href="../css/duvida_detalhe.css" />
+  
 
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script> 
@@ -34,6 +35,41 @@
         }
       });
     });
+
+    function salvar(){
+      alert("salvar")
+      }
+
+    function excluir(){
+      $(document).ready(function () {
+      $.ajax({
+        url: '../php/ajax/excluir_duvida.php',
+        method: 'post',
+        data: {'id': getQuery('id')},
+        success: function (data) {
+          //console.log(data);
+         //alert(data);
+        }
+      });
+    });
+    window.location.href = "http://localhost/projeto_004/";
+
+
+    /*
+    $(document).ready(function () {
+      $.ajax({
+        url: '../php/ajax/obter_duvida_detalhe.php',
+        method: 'post',
+        data: {'id': getQuery('id')},
+        success: function (data) {
+          //console.log(data);
+          $('#center-div').html(data);
+        }
+      });
+    });
+      }
+      */
+      }
   </script>
 </header>
 
@@ -102,20 +138,20 @@
             <h5 class="card-title pricing-card-title font-weight-bold mb-3" style="text-align: center;">PERGUNTAS
               SEMELHANTES</h5>
 
-            <h6 class="card-title pricing-card-title mb-0"><img src="imagens/icons/usuario.png" class="mr-3" alt="">
+            <h6 class="card-title pricing-card-title mb-0"><img src="../imagens/icons/usuario.png" class="mr-3" alt="">
               Lorem Ipsum is simply dummy text of
               the printing and typesetting industry. Lorem Ipsu</h6>
             <button type="button" class="btn btn-primary btn-sm"
               style="background-color: rgb(17, 226, 88); border-color: transparent; border-radius: 20px;height: 7%;font-size: 0.6em;padding: 0px 8px 0px 8px; text-align: right;">LEIA
               MAIS</button>
 
-            <h6 class="card-title pricing-card-title mb-0"><img src="imagens/icons/usuario.png" class="mr-3" alt="">
+            <h6 class="card-title pricing-card-title mb-0"><img src="../imagens/icons/usuario.png" class="mr-3" alt="">
               Lorem Ipsum is simply dummy text of
               the printing and typesetting industry. Lorem Ipsu</h6>
             <button type="button" class="btn btn-primary btn-sm"
               style="background-color: rgb(17, 226, 88); border-color: transparent; border-radius: 20px;height: 7%;font-size: 0.6em;padding: 0px 8px 0px 8px; text-align: right;">LEIA
               MAIS</button>
-            <h6 class="card-title pricing-card-title mb-0"><img src="imagens/icons/usuario.png" class="mr-3" alt="">
+            <h6 class="card-title pricing-card-title mb-0"><img src="../imagens/icons/usuario.png" class="mr-3" alt="">
               Lorem Ipsum is simply dummy text of
               the printing and typesetting industry. Lorem Ipsu</h6>
             <button type="button" class="btn btn-primary btn-sm"

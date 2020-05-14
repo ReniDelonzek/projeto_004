@@ -6,6 +6,8 @@ define('PASS', '1393');
 define('DBNAME', '2016201393');
 define('PORT', '5432');
 
+//echo 'Código: ' . $json->HOST;
+
 class Conexao
 {
     //Cria a conexão com banco de dados usando o PDO e a porta do banco de dados
@@ -24,7 +26,10 @@ class Conexao
         //retorna uma instancia da classe
 
         if (!isset(self::$instance)) {
-            self::$instance = new pdo('pgsql:host=' . HOST . ';port=' . PORT . ';dbname=' . DBNAME, USER, PASS);
+            $arquivo = file_get_contents('../credentials/db.json');
+            $json = json_decode($arquivo);
+            //self::$instance = new pdo('pgsql:host=' . HOST . ';port=' . PORT . ';dbname=' . DBNAME, USER, PASS);
+            self::$instance = new pdo('pgsql:host=' . $json -> HOST . ';port=' . $json -> PORT . ';dbname=' .$json -> DBNAME,$json -> USER,$json -> PASSWORD);
         }
         return self::$instance;
     }
@@ -34,17 +39,17 @@ class Conexao
 class Conexao2
 {
     var $cnx;
-    var $HOST = "hard.uniguacu.edu.br";
-    var $DBNAME = "2016201393";
-    var $USER = "2016201393";
-    var $PASSWORD = "1393";
+
+
     function __construct()
     {
+        $arquivo = file_get_contents('../credentials/db.json');
+        $json = json_decode($arquivo);
         $this->cnx = pg_connect("
-            host=$this->HOST 
-            dbname=$this->DBNAME 
-            user=$this->USER 
-            password=$this->PASSWORD") or die("Nao conectou");
+            host=$json->HOST 
+            dbname=$json->DBNAME 
+            user=$json->USER 
+            password=$json->PASSWORD") or die("Nao conectou");
     }
     function valida($email, $senha)
     {
@@ -806,4 +811,39 @@ class Card
     {
         echo $this->render();
     }
+}
+class ListagemDuvidaEditar{
+    private $duvida;
+
+    function __construct($duvida){ 
+        $this -> duvida = $duvida;
+    
+    }
+
+    function render(){
+        $usuario = new Usuario();
+        $status = new Status();
+        $categoria = new Categoria();
+        
+        $this -> buffer ="<div id=\"card\" class=\"card mb-4 box-shadow\"
+        style=\"width: 327%; border-radius: 10px;box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.22);text-align: center;\">";
+        $this -> buffer .= "<div class=\"card-body\" style=\"text-align: left;\">";
+        $this -> buffer .= "<h4 class=\"card-title pricing-card-title font-weight-bold mb-3\" style=\"text-align: left;\">{$this -> duvida -> getTitulo()}</h4>";
+        $this -> buffer .= "<button id=\"btn-editar\" type=\"button\" class=\"chip btn btn-primary btn-sm primary_color\" style=\"border-color: transparent; border-radius: 20px;height: 7%;font-size: 0.5em;  padding: 8px 16px 8px 16px; margin: 8px\" onclick = \"salvar()\">Editar</button>";
+        $this -> buffer .= "<button id=\"btn-editar\" type=\"button\" class=\"chip btn btn-primary btn-sm primary_color\" style=\"border-color: transparent; border-radius: 20px;height: 7%;font-size: 0.5em;  padding: 8px 16px 8px 16px; margin: 8px\" onclick = \"excluir()\">Excluir</button>";
+        $this -> buffer .= "<h6 class=\"card-title pricing-card-title font-weight-bold mb-3\" style=\"text-align: left;\"><img
+        src=\"../imagens/icons/usuario.png\" class=\"mr-3\" alt=\"\" > Por {$usuario -> listById($this -> duvida -> getusuarioId()) -> getNome()}</h6>";
+        $this -> buffer .="<h6 class=\"card-title pricing-card-title mb-0\">{$this -> duvida -> getDescricao()}</h6>";
+        $this -> buffer .= "<button type=\"button\" class=\"chip btn btn-primary btn-sm primary_color\" style=\"border-color: transparent; border-radius: 20px;height: 7%;font-size: 0.5em;  padding: 8px 16px 8px 16px; margin: 8px\">REDES</button>";
+        $this -> buffer .= "<button type=\"button\" class=\"chip btn btn-primary btn-sm primary_color\" style=\"border-color: transparent; border-radius: 20px;height: 7%;font-size: 0.5em;  padding: 8px 16px 8px 16px;\">REDES</button>";
+        $this -> buffer .= "</div>";
+        $this -> buffer .="</div>";
+
+        return $this -> buffer;
+    }
+    
+    function Show(){
+        echo $this -> render();
+    }
+    
 }
