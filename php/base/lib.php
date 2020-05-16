@@ -319,12 +319,14 @@ class Usuario
                 values ('{$this->email}', 
                         '{$this->nome}', 
                         '{$this->senha}',
-                        {$this->pontos_bonificacao} )";
+                         {$this->pontos_bonificacao} )";
                         //{Utils::criptografar($this -> pontos_bonificacao)})";
         $stmt = Conexao::getInstance()->prepare($sql);
+        
+        //verifica se ocorreu algum erro
         if($stmt->execute() === false){
             return $stmt->errorInfo();
-        }else{
+        }else{ 
             return "valido";
         }
     }
