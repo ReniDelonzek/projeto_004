@@ -319,9 +319,16 @@ class Usuario
                 values ('{$this->email}', 
                         '{$this->nome}', 
                         '{$this->senha}', 
-                        {Utils::criptografar($this -> pontos_bonificacao)})";
+                        {$this->pontos_bonificacao} )";
+                        //{Utils::criptografar($this -> pontos_bonificacao)})";
+        
         $stmt = Conexao::getInstance()->prepare($sql);
-        $stmt->execute();
+        
+        if($stmt->execute() === false){
+            return $stmt->errorInfo();
+        }else{
+            return "valido";
+        }
     }
 
     public function update()
