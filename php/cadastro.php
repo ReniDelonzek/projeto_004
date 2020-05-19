@@ -29,7 +29,7 @@
 				  method : 'post',
           dataType: 'json',
 				  success : function(data){
-            if(data[0] == "valido"){
+            if(data[0] == "1"){
               window.location.href = "card_categorias.php";
 					  }else{
 						  if(data[0]==23505){
