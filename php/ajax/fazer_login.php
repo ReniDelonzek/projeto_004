@@ -1,4 +1,23 @@
 <?php
+include_once('../base/lib.php');
+session_start();
+/*
+andrewL@gmail.com
+*/
+//$email="andrewL@gmail.com";
+//$senha="123456";
+$email=$_POST['email'];
+$senha=$_POST['senha'];
+
+$login = new Login();
+if($login -> valida($email,$senha)){
+    $_SESSION['email'] = $email;
+    echo '1';
+}else{
+	echo '0';
+    
+}
+/*
 	session_start();
 	
     $email=$_POST['email'];
@@ -13,5 +32,5 @@
 	}else{
 		echo "Erro Inesperado";
 	}
-
+*/
 ?>

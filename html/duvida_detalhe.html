@@ -18,7 +18,29 @@
   <link rel="stylesheet" type="text/css" href="../css/duvida_detalhe.css" />
 
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-  <script> 
+  <script>
+      $(document).ready(function(){  
+          function check_session()
+          {
+              $.ajax({
+                url:"../php/ajax/checar_sessao.php",
+                method:"POST",
+                success:function(data)
+                {
+                  if(data == '1')
+                  {
+                    alert('Sua sessao expirou!');  
+                    window.location.href="login.html";
+                  }else{
+                    //alert('A sessao talkey');  
+                  }
+                }
+              })
+          }
+            setInterval(function(){
+              check_session();
+          }, 10000);  
+    }); 
     function getQuery(q) {
         return (window.location.search.match(new RegExp('[?&]' + q + '=([^&]+)')) || [, null])[1];
     }

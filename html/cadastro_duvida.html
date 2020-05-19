@@ -57,6 +57,28 @@
 
 
 <script type="text/javascript" language="javascript">
+$(document).ready(function(){  
+       function check_session()
+       {
+          $.ajax({
+            url:"../php/ajax/checar_sessao.php",
+            method:"POST",
+            success:function(data)
+            {
+              if(data == '1')
+              {
+                alert('Sua sessao expirou!');  
+                window.location.href="login.html";
+              }else{
+                //alert('A sessao talkey');  
+              }
+            }
+          })
+       }
+        setInterval(function(){
+          check_session();
+      }, 10000);  
+ });
 function salvar(){
     var dados = $('#cartao_pergunta').find("input, select").serialize();
     

@@ -1,11 +1,4 @@
 <?php
-//Criar as constantes com as credencias de acesso ao banco de dados
-define('HOST', 'hard.uniguacu.edu.br');
-define('USER', '2016201393');
-define('PASS', '1393');
-define('DBNAME', '2016201393');
-define('PORT', '5432');
-
 class Conexao
 {
     //Cria a conexão com banco de dados usando o PDO e a porta do banco de dados
@@ -24,7 +17,10 @@ class Conexao
         //retorna uma instancia da classe
 
         if (!isset(self::$instance)) {
-            self::$instance = new pdo('pgsql:host=' . HOST . ';port=' . PORT . ';dbname=' . DBNAME, USER, PASS);
+            $arquivo = file_get_contents('../credentials/db.json');
+            $json = json_decode($arquivo);
+            //self::$instance = new pdo('pgsql:host=' . HOST . ';port=' . PORT . ';dbname=' . DBNAME, USER, PASS);
+            self::$instance = new pdo('pgsql:host=' . $json -> HOST . ';port=' . $json -> PORT . ';dbname=' .$json -> DBNAME,$json -> USER,$json -> PASSWORD);
         }
         return self::$instance;
     }
@@ -34,29 +30,30 @@ class Conexao
 class Conexao2
 {
     var $cnx;
-    var $HOST = "hard.uniguacu.edu.br";
-    var $DBNAME = "2016201393";
-    var $USER = "2016201393";
-    var $PASSWORD = "1393";
+
+
     function __construct()
     {
+        $arquivo = file_get_contents('../credentials/db.json');
+        $json = json_decode($arquivo);
         $this->cnx = pg_connect("
-            host=$this->HOST 
-            dbname=$this->DBNAME 
-            user=$this->USER 
-            password=$this->PASSWORD") or die("Nao conectou");
+            host=$json->HOST 
+            dbname=$json->DBNAME 
+            user=$json->USER 
+            password=$json->PASSWORD") or die("Nao conectou");
     }
     function valida($email, $senha)
     {
         $res = @pg_query("SELECT * FROM usuario WHERE
              email = '$email' AND senha = '$senha' ");
         if ($reg = pg_fetch_object($res)) {
-            return "valido";
+            return true;
         } else {
-            return "invalido";
+            return false;
         }
     }
 }
+
 
 
 class Utils
@@ -667,7 +664,7 @@ class ListaCardDuvida
                 $this->buffer .= "</div>";
                 $this->buffer .= "<div class=\"card-deck mb-3 text-center\">";
             }
-            $card = new Card($duv->getTitulo(), $duv->getDescricao(), $link = "html/duvida_detalhe.html?id=" . $duv->getId());
+            $card = new Card($duv->getTitulo(), $duv->getDescricao(), $link = "../html/duvida_detalhe.html?id=" . $duv->getId());
             $this->buffer .=  $card->render();
             $i++;
         }
@@ -813,4 +810,23 @@ class Card
     {
         echo $this->render();
     }
+    
+}
+class Login{
+    function __construct(){
+
+    }
+    function valida($email, $senha){
+
+        $sql = "select * from usuario where email ='{$email}' and  senha='{$senha}'";
+        $stmt = Conexao::getInstance()->prepare($sql);
+        $stmt->execute();
+        $stat = $stmt -> fetch();
+        if($stat){
+            return true;
+        }else{
+            return false;
+        }
+        
+    }   
 }
