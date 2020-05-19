@@ -51,14 +51,14 @@
       function salvar(){
         var dados = $('#cartao_pergunta').find("input, select").serialize();
         console.log(dados);
-        alert(dados);
+        //alert(dados);
 
         $.ajax({        
         url:'../php/ajax/cadastrar_duvida.php',
         type: 'POST',
         data: dados,
         success: function(data){
-              
+              alert(data);
         }
 
     });

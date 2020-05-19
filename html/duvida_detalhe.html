@@ -60,7 +60,9 @@
     function getQuery(q) {
         return (window.location.search.match(new RegExp('[?&]' + q + '=([^&]+)')) || [, null])[1];
     }
-
+    function salvar(){
+      alert("salvar")
+      }
     $(document).ready(function () {
       $.ajax({
         url: '../php/ajax/obter_duvida_detalhe.php',
