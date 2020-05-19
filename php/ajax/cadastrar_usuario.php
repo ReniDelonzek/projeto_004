@@ -13,7 +13,7 @@
     $usu->setSenha($senha);
     $usu->setPontosBonificacao(0);
     $status = $usu->save();
-    if($status == "valido"){
+    if($status == "1"){
         $_SESSION['email'] = $email;
 		echo json_encode(array($status));
     }else{
