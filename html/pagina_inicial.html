@@ -22,6 +22,22 @@
   
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script>
+      window.onload = function(){
+        $.ajax({
+            url:"../php/ajax/checar_sessao.php",
+            method:"POST",
+            success:function(data)
+            {
+              if(data == '1')
+              {
+                alert('Você não está logado!');  
+                window.location.href="login.html";
+              }else{
+                //alert('A sessao talkey');  
+              }
+            }
+          })
+      }
       $(document).ready(function () {
         $.ajax({
           url: '../php/ajax/listar_duvidas.php',
@@ -47,6 +63,7 @@
 
     });
     }
+    
  $(document).ready(function(){  
        function check_session()
        {

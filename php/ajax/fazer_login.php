@@ -1,11 +1,7 @@
 <?php
 include_once('../base/lib.php');
 session_start();
-/*
-andrewL@gmail.com
-*/
-//$email="andrewL@gmail.com";
-//$senha="123456";
+
 $email=$_POST['email'];
 $senha=$_POST['senha'];
 

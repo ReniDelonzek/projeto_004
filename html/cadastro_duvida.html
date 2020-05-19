@@ -57,7 +57,24 @@
 
 
 <script type="text/javascript" language="javascript">
-$(document).ready(function(){  
+      window.onload = function(){
+        $.ajax({
+            url:"../php/ajax/checar_sessao.php",
+            method:"POST",
+            success:function(data)
+            {
+              if(data == '1')
+              {
+                alert('Você não está logado!');  
+                window.location.href="login.html";
+              }else{
+                //alert('A sessao talkey');  
+              }
+            }
+          })
+      }
+    
+    $(document).ready(function(){  
        function check_session()
        {
           $.ajax({
