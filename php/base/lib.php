@@ -814,6 +814,8 @@ class Card
 }
 class ListagemDuvidaEditar{
     private $duvida;
+class Login{
+    function __construct(){
 
 
     function __construct($duvida){ 
@@ -850,6 +852,7 @@ class ListagemDuvidaEditar{
     class Login{
         function __construct(){
     
+<<<<<<< HEAD
         }
         function valida($email, $senha){
     
@@ -865,3 +868,8 @@ class ListagemDuvidaEditar{
     
         }   
     }	
+=======
+}
+
+    }
+>>>>>>> master
