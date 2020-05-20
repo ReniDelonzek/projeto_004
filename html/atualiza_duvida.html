@@ -59,25 +59,25 @@
 <script type="text/javascript" language="javascript">
 function salvar(){
     var dados = $('#cartao_pergunta').find("input, select").serialize();
-    
+
 
     console.log(dados);
-    
+
 
     $.ajax({        
         url:'/php/ajax/cadastrar_duvida.php',
         type: 'POST',
         data: dados,
         success: function(data){
-              
+
         }
 
     });
     window.location.href = "http://localhost/projeto_004/";
 
-  
+
 
 }
-   
+
 </script>
-</html>
+</html> 

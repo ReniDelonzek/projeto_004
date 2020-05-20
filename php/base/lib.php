@@ -1,8 +1,4 @@
 <?php
-//Criar as constantes com as credencias de acesso ao banco de dados
-
-
-
 class Conexao
 {
     //Cria a conexão com banco de dados usando o PDO e a porta do banco de dados
@@ -51,12 +47,13 @@ class Conexao2
         $res = @pg_query("SELECT * FROM usuario WHERE
              email = '$email' AND senha = '$senha' ");
         if ($reg = pg_fetch_object($res)) {
-            return "valido";
+            return true;
         } else {
-            return "invalido";
+            return false;
         }
     }
 }
+
 
 
 class Utils
@@ -318,16 +315,16 @@ class Usuario
         $sql = "INSERT INTO usuario(email, nome, senha, pontos_bonificacao)
                 values ('{$this->email}', 
                         '{$this->nome}', 
-                        '{$this->senha}',
+                        '{$this->senha}', 
                         {$this->pontos_bonificacao} )";
                         //{Utils::criptografar($this -> pontos_bonificacao)})";
+        
         $stmt = Conexao::getInstance()->prepare($sql);
-
-        //verifica se ocorreu algum erro
+        
         if($stmt->execute() === false){
             return $stmt->errorInfo();
         }else{
-            return "valido";
+            return '1';
         }
     }
 
@@ -667,7 +664,7 @@ class ListaCardDuvida
                 $this->buffer .= "</div>";
                 $this->buffer .= "<div class=\"card-deck mb-3 text-center\">";
             }
-            $card = new Card($duv->getTitulo(), $duv->getDescricao(), $link = "html/duvida_detalhe.html?id=" . $duv->getId());
+            $card = new Card($duv->getTitulo(), $duv->getDescricao(), $link = "../html/duvida_detalhe.html?id=" . $duv->getId());
             $this->buffer .=  $card->render();
             $i++;
         }
@@ -813,9 +810,12 @@ class Card
     {
         echo $this->render();
     }
+    
 }
 class ListagemDuvidaEditar{
     private $duvida;
+class Login{
+    function __construct(){
 
     function __construct($duvida){ 
         $this -> duvida = $duvida;
@@ -849,3 +849,5 @@ class ListagemDuvidaEditar{
     }
     
 }
+
+    }
