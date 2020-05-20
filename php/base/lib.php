@@ -814,8 +814,7 @@ class Card
 }
 class ListagemDuvidaEditar{
     private $duvida;
-class Login{
-    function __construct(){
+
 
     function __construct($duvida){ 
         $this -> duvida = $duvida;
@@ -847,7 +846,22 @@ class Login{
     function Show(){
         echo $this -> render();
     }
-    
-}
-
     }
+    class Login{
+        function __construct(){
+    
+        }
+        function valida($email, $senha){
+    
+            $sql = "select * from usuario where email ='{$email}' and  senha='{$senha}'";
+            $stmt = Conexao::getInstance()->prepare($sql);
+            $stmt->execute();
+            $stat = $stmt -> fetch();
+            if($stat){
+                return true;
+            }else{
+                return false;
+            }
+    
+        }   
+    }	

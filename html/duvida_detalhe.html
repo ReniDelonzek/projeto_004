@@ -20,6 +20,7 @@
 
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script>
+    
     window.onload = function(){
         $.ajax({
             url:"../php/ajax/checar_sessao.php",
@@ -36,6 +37,7 @@
             }
           })
       }
+     
       $(document).ready(function(){  
           function check_session()
           {
@@ -76,10 +78,7 @@
       });
     });
 
-    function salvar(){
-      alert("salvar")
-      }
-
+/*
     function excluir(){
       $(document).ready(function () {
       $.ajax({
@@ -93,7 +92,7 @@
       });
     });
     window.location.href = "http://localhost/projeto_004/";
-
+*/
 
     
     $(document).ready(function () {
@@ -106,7 +105,8 @@
           $('#center-div').html(data);
         }
       });
-    });      
+    });   
+
   </script>
 </header>
 
