@@ -1,67 +1,85 @@
 <doctype html>
-<html lang="en">
+  <html lang="en">
+
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sign-in/">
-    <link rel="stylesheet" href="../css/style-cadastro.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-     <!-- Jquery -->
-     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-     <script>
-    function chama(){
+    <link rel="stylesheet" type="text/css" href="../css/login.css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+    <script src="https://getbootstrap.com/docs/3.3/assets/js/ie-emulation-modes-warning.js"></script>
+    <script type="text/javascript" src="../js/main.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script>
+      function criar_conta() {
         var nome = $("#nome").val();
         var email = $("#email").val();
         var senha = $("#senha").val();
 
         $.ajax({
-				  url : "ajax/cadastrar_usuario.php",
-				  data : {
-                nome : nome,
-                email: email,
-                senha: senha,
-                },
-				  method : 'post',
+          url: "ajax/cadastrar_usuario.php",
+          data: {
+            nome: nome,
+            email: email,
+            senha: senha,
+          },
+          method: 'post',
           dataType: 'json',
-				  success : function(data){
-            if(data[0] == "1"){
+          success: function(data) {
+            if (data[0] == "1") {
               window.location.href = "card_categorias.php";
-					  }else{
-						  if(data[0]==23505){
-              alert("Email já foi cadastrado!\nSQL state: "+data[0]+"\n"+ data[2]);
-              }else{
-                alert("Erro Inesperado\nSQL state: "+data[0]+"\n "+ data[2]);
+            } else {
+              if (data[0] == 23505) {
+                alert("Email já foi cadastrado!\nSQL state: " + data[0] + "\n" + data[2]);
+              } else {
+                alert("Erro Inesperado\nSQL state: " + data[0] + "\n " + data[2]);
               }
-					  }
-				  },
-			})
-    }
-  </script>
-</head>
-<body>
-  <body class="text-center">
-        <div class="form_card" id="conjunto_elements">
-          <form class="form-signin" id="conjuntos">
-              <img class="mb-4 img_icon" src="../img/logod.png" alt="" width="72" height="72">
-              <h1 class="h3 mb-3 font-weight-normal text">Faça seu cadastro!</h1>
-              <label for="nome" class="sr-only">Nome completo</label>
-              <input type="text" id="nome" class="form-control input" placeholder="Nome" >
-              <label for="email" class="sr-only">Email address</label>
-              <input type="text" id="email" class="form-control input" placeholder="Email" >
-              <label for="senha" class="sr-only">Password</label>
-              <input type="password" id="senha" class="form-control input" placeholder="Senha" >
-              <div class="checkbox mb-3">   
-              </div>
-              <div class="container">
-              <input type="button" class="btn btn-lg btn-primary btn-block " value="Confirmar envio" onclick="chama()">
-              </div>
-              </form>
-              <label> Esqueceu sua senha? </label>
-         </div>
+            }
+          },
+        })
+      }
+    </script>
+  </head>
+
+
+  <body>
+    <div class='container'>
+
+      <div class='painel-esquerda centro-tela'>
+        <img src="../imagens/icon.png">
+      </div>
+
+
+      <div class='painel-direita centro-tela'>
+        <div class='img-mobile centro-tela'>
+          <img src="../imagens/colabora.png">
+        </div>
+        <div class='container-login centro-tela'>
+          <h2>Faça seu <span style="color:#FFBE24!important"> login</span></h2>
+          <div class="container-dados" id="div_login">
+
+            <div id='campo-nome' class=''>
+
+              <i class="fas fa-user"></i>
+              <input type="text" placeholder="Nome" class="input" id="nome" name="nome">
+            </div>
+
+            <div id='campo-email' class=''>
+
+              <i class="fas fa-user"></i>
+              <input type="text" placeholder="Email" class="input" id="email" name="email">
+            </div>
+            <div id='campo-senha' class=''>
+              <i class="fas fa-lock"></i><input type="password" placeholder='Senha' class="input" id="senha" name="senha">
+
+            </div>
+            <input type="button" class="btn" value="Criar Conta" id="enviar" onclick="criar_conta()">
+          </div>
+        </div>
+        <div class='img-mobile centro-tela'>
+          <img src="../imagens/artigo.png">
+        </div>
+      </div>
   </body>
-</html>
+
+  </html>

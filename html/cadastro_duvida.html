@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -11,27 +12,29 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
+    </script>
     <link rel="stylesheet" type="text/css" href="../css/style.css">
     <title>Perguntas</title>
 </head>
+
 <body>
     <div class="container">
-        <div id= "cartao_pergunta" class="cartao_pergunta">
-           <div class="div_pergunta">
+        <div id="cartao_pergunta" class="cartao_pergunta card mb-4 box-shadow">
+            <div class="div_pergunta">
                 <label>Faça sua pergunta agora mesmo!</label>
-           </div> 
-           <div class="div_icone">
+            </div>
+            <div class="div_icone">
                 <img src="../img/icon.jpeg">
-           </div>  
-           <div  id="cadastro_duvida" class="div_seletores" >
-               <label class="div_cardtexts">Título</label><br>
-               <input id = titulo type="text" name="titulo" placeholder="Escolhe um título bem chamativo ai!"><br><br>
-               <label class="div_cardtexts">Pergunta</label><br>
-               <input  type="text" name="duvida" placeholder="E a pergunta que vale 1 milhão de reais..."><br>
-           </div> <br> 
-           <hr></hr>
-           <div class="div_selects">
+            </div>
+            <div id="cadastro_duvida" class="div_seletores">
+                <label class="div_cardtexts">Título</label><br>
+                <input id=t itulo type="text" name="titulo" placeholder="Escolhe um título bem chamativo ai!"><br><br>
+                <label class="div_cardtexts">Pergunta</label><br>
+                <input type="text" name="duvida" placeholder="Qual é a sua dúvida?"><br>
+            </div> <br>
+            <hr></hr>
+            <div class="div_selects">
                 <label>Vai valer:</label><br>
                 <select name="pontos">
                     <option>10 pontos</option>
@@ -41,7 +44,7 @@
             </div>
             <div class="div_selects">
                 <label>Matéria:</label><br>
-                <select id="materia" name="materia" >
+                <select id="materia" name="materia">
                     <option value="1">Robótica</option>
                     <option value="2"> Programação</option>
                     <option value="3">Redes</option>
@@ -49,7 +52,7 @@
             </div>
             <div class="div_selects">
                 <label>Confirmação:</label><br>
-                <input type="submit" value="Publicar" id="salvar" onclick = "salvar()">
+                <input type="submit" value="Publicar" id="salvar" onclick="salvar()">
             </div>
         </div>
     </div>
@@ -57,64 +60,60 @@
 
 
 <script type="text/javascript" language="javascript">
-      window.onload = function(){
+    window.onload = function() {
         $.ajax({
-            url:"../php/ajax/checar_sessao.php",
-            method:"POST",
-            success:function(data)
-            {
-              if(data == '1')
-              {
-                alert('Você não está logado!');  
-                window.location.href="login.html";
-              }else{
-                //alert('A sessao talkey');  
-              }
+            url: "../php/ajax/checar_sessao.php",
+            method: "POST",
+            success: function(data) {
+                if (data == '1') {
+                    alert('Você não está logado!');
+                    window.location.href = "login.html";
+                } else {
+                    //alert('A sessao talkey');  
+                }
             }
-          })
-      }
-    
-    $(document).ready(function(){  
-       function check_session()
-       {
-          $.ajax({
-            url:"../php/ajax/checar_sessao.php",
-            method:"POST",
-            success:function(data)
-            {
-              if(data == '1')
-              {
-                alert('Sua sessao expirou!');  
-                window.location.href="login.html";
-              }else{
-                //alert('A sessao talkey');  
-              }
-            }
-          })
-       }
-        setInterval(function(){
-          check_session();
-      }, 10000);  
- });
-function salvar(){
-    var dados = $('#cartao_pergunta').find("input, select").serialize();
-    
+        })
+    }
 
-    console.log(dados);
-    
-
-    $.ajax({        
-        url:'../php/ajax/cadastrar_duvida.php',
-        type: 'POST',
-        data: dados,
-        success: function(data){
-              
+    $(document).ready(function() {
+        function check_session() {
+            $.ajax({
+                url: "../php/ajax/checar_sessao.php",
+                method: "POST",
+                success: function(data) {
+                    if (data == '1') {
+                        alert('Sua sessao expirou!');
+                        window.location.href = "login.html";
+                    } else {
+                        //alert('A sessao talkey');  
+                    }
+                }
+            })
         }
-
+        setInterval(function() {
+            check_session();
+        }, 10000);
     });
-  
 
-}
-   
+    function salvar() {
+        var dados = $('#cartao_pergunta').find("input, select").serialize();
+
+
+        console.log(dados);
+
+
+        $.ajax({
+            url: '../php/ajax/cadastrar_duvida.php',
+            type: 'POST',
+            data: dados,
+            success: function(data) {
+
+            }
+
+        });
+
+
+    }
 </script>
+
 </html>
