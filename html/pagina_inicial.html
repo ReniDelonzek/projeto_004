@@ -1,186 +1,178 @@
 <!doctype html>
 <html lang="en">
 
-  <header>
+<header>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  
-  
+
+
     <title>Bem Vindo</title>
-  
+
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/navbars/">
-  
+
     <!-- Bootstrap core CSS -->
     <link href="../dist/css/bootstrap.min.css" rel="stylesheet">
-  
+
     <script src="../js/popper.min.js"></script>
     <script src="../dist/js/bootstrap.min.js"></script>
-  
+
     <!-- Custom styles for this template -->
     <link rel="stylesheet" type="text/css" href="../css/style.css" />
     <link rel="stylesheet" type="text/css" href="../css/pagina_inicial.css" />
-  
+
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script>
-      window.onload = function(){
-        $.ajax({
-            url:"../php/ajax/checar_sessao.php",
-            method:"POST",
-            success:function(data)
-            {
-              if(data == '1')
-              {
-                alert('Você não está logado!');  
-                window.location.href="login.html";
-              }else{
-                //alert('A sessao talkey');  
-              }
-            }
-          })
-      }
-      $(document).ready(function () {
-        $.ajax({
-          url: '../php/ajax/listar_duvidas.php',
-          method: 'POST',
-          success: function (data) {
-            $('#center-div').html(data);
-          }
+        window.onload = function() {
+            $.ajax({
+                url: "../php/ajax/checar_sessao.php",
+                method: "POST",
+                success: function(data) {
+                    if (data == '1') {
+                        alert('Você não está logado!');
+                        window.location.href = "login.html";
+                    } else {
+                        //alert('A sessao talkey');  
+                    }
+                }
+            })
+        }
+        $(document).ready(function() {
+            $.ajax({
+                url: '../php/ajax/listar_duvidas.php',
+                method: 'POST',
+                success: function(data) {
+                    $('#center-div').html(data);
+                }
+            });
         });
-      });
-    
-      function salvar(){
-        var dados = $('#cartao_pergunta').find("input, select").serialize();
-        console.log(dados);
-        //alert(dados);
 
-        $.ajax({        
-        url:'../php/ajax/cadastrar_duvida.php',
-        type: 'POST',
-        data: dados,
-        success: function(data){
-              alert(data);
+        function salvar() {
+            var dados = $('#cartao_pergunta').find("input, select").serialize();
+            console.log(dados);
+            //alert(dados);
+
+            $.ajax({
+                url: '../php/ajax/cadastrar_duvida.php',
+                type: 'POST',
+                data: dados,
+                success: function(data) {
+                    alert(data);
+                }
+
+            });
         }
 
-    });
-    }
-    
- $(document).ready(function(){  
-       function check_session()
-       {
-          $.ajax({
-            url:"../php/ajax/checar_sessao.php",
-            method:"POST",
-            success:function(data)
-            {
-              if(data == '1')
-              {
-                alert('Sua sessao expirou!');  
-                window.location.href="login.html";
-              }else{
-                //alert('A sessao talkey');  
-              }
+        $(document).ready(function() {
+            function check_session() {
+                $.ajax({
+                    url: "../php/ajax/checar_sessao.php",
+                    method: "POST",
+                    success: function(data) {
+                        if (data == '1') {
+                            alert('Sua sessao expirou!');
+                            window.location.href = "login.html";
+                        } else {
+                            //alert('A sessao talkey');  
+                        }
+                    }
+                })
             }
-          })
-       }
-        setInterval(function(){
-          check_session();
-      }, 10000);  
- });  
-
-     
+            setInterval(function() {
+                check_session();
+            }, 10000);
+        });
     </script>
-  </header>
+</header>
+
 <body style="width: 100%;">
-  <nav class="navbar" style="background-color: rgb(48, 89, 168) !important;">
-    <a class="navbar-brand ml-5" href="#"><img src="../imagens/icons/logo-ask.png" alt=""></a>
-  </nav>
-  <!--End Nav Menu superior-->
-  <div class="container">
-    <div id= "cartao_pergunta" class="cartao_pergunta">
-       <div class="div_pergunta">
-            <label>Faça sua pergunta agora mesmo!</label>
-       </div> 
-       <div class="div_icone">
-            <img src="../img/icon.jpeg">
-       </div>  
-       <div class="div_seletores">
-           <label class="div_cardtexts">Título</label><br>
-           <input type="text" name="titulo" placeholder="Escolhe um título bem chamativo ai!"><br><br>
-           <label class="div_cardtexts">Pergunta</label><br>
-           <input type="text" name="pergunta" placeholder="E a pergunta que vale 1 milhão de reais..."><br>
-       </div> <br> 
-       <hr></hr>
-       <div class="div_selects">
-            <label>Vai valer:</label><br>
-            <select name="pontos">
+    <nav class="navbar">
+        <a class="navbar-brand ml-5" href="#"><img src="../imagens/icons/logo-ask.png" alt=""></a>
+    </nav>
+    <!--End Nav Menu superior-->
+    <div class="container">
+        <div id="cartao_pergunta" class="cartao_pergunta">
+            <div class="div_pergunta">
+                <label>Faça sua pergunta agora mesmo!</label>
+            </div>
+            <div class="div_icone">
+                <img src="../img/icon.jpeg">
+            </div>
+            <div class="div_seletores">
+                <label class="div_cardtexts">Título</label><br>
+                <input type="text" name="titulo" placeholder="Escolhe um título bem chamativo ai!"><br><br>
+                <label class="div_cardtexts">Pergunta</label><br>
+                <input type="text" name="pergunta" placeholder="Insira sua pergunta"><br>
+            </div> <br>
+            <hr></hr>
+            <div class="div_selects">
+                <label>Vai valer:</label><br>
+                <select name="pontos">
                 <option>10 pontos</option>
                 <option>20 pontos</option>
                 <option>30 pontos</option>
             </select>
-        </div>
-        <div class="div_selects">
-            <label>Matéria:</label><br>
-            <select name="materia" >
+            </div>
+            <div class="div_selects">
+                <label>Matéria:</label><br>
+                <select name="materia">
                 <option>Robótica</option>
                 <option>Programação</option>
                 <option>Redes</option>
             </select>
-        </div>
-        <div class="div_selects">
-            <label>Confirmação:</label><br>
-            <input type="submit" value="Publicar" id="salvar" onclick = "salvar()">
+            </div>
+            <div class="div_selects">
+                <label>Confirmação:</label><br>
+                <input type="submit" value="Publicar" id="salvar" onclick="salvar()">
+            </div>
         </div>
     </div>
-</div>
-<br>
-<div class="container">
-  <div class="row justify-content-between" style="width:100%;">
-    <div class="col-sm-3 col-md-9">
-      <div id="center-div" class="card-deck mb-3 text-center">
-      </div>
-    </div>
-      <!-- End menu central -->
-      
-      <div class="col-sm-3 col-md-3">
-        <div class="card mb-4 box-shadow"
-          style="width: 130%; background-color: rgb(232, 238, 250); border-radius: 10px; box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.22); text-align: center;">
-          <div class="card-body">
-            <h4 class="card-title pricing-card-title font-weight-bold mb-3">NAVEGAR POR TEMAS</h4>
-            <ul style="text-align: left;">
-              <li>MANUTENÇÃO</li>
-              <li>HARDWARE</li>
-              <li>SOFTWARE</li>
-              <li>REDES</li>
-              <li>PROGRAMAÇÃO</li>
-              <li>BANCO DE DADOS</li>
-              <li>ROBÓTICA</li>
-              <li>TEORIA GERAL DA ADMINISTRAÇÃO</li>
-            </ul>
-            <button type="button" class="btn btn-primary btn-sm" style="border-radius: 9px; border-color:transparent; background-color: rgb(8, 53, 136);">MAIS TEMAS</button>
-          </div>
-        </div>
-        <div class="card mb-4 box-shadow"
-        style="width: 130%; background-color: rgb(232, 238, 250); border-radius: 10px; box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.22); text-align: center;">
-          <div class="card-body">
-            <h4 class="card-title pricing-card-title font-weight-bold mb-3">NAVEGAR POR GRUPOS</h4>
-            <ul style="text-align: left;">
-              <li>ENGENHARIA</li>
-              <li>SISITEMAS DE INFORMAÇÃO</li>
-              <li>EDUCAÇÃO FÍSICA</li>
-              <li>ADMINISTRAÇÃO</li>
-              <li>CONTABILIDADE</li>
-              <li>NUTRIÇÃO</li>
-              <li>MEDICINA</li>
-              <li>AGRONOMIA</li>
-            </ul>
-            <button type="button" class="btn btn-primary btn-sm" style="border-radius: 9px; border-color:transparent; box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.22);  background-color: rgb(8, 53, 136);">MAIS GRUPOS</button>
-          </div>
-        </div>
-      </div>
-      <!-- End menu lateral direito -->
-    </div>
+    <br>
+    <div class="container">
+        <div class="row justify-content-between" style="width:100%;">
+            <div class="col-sm-3 col-md-9">
+                <div id="center-div" class="card-deck mb-3 text-center">
+                </div>
+            </div>
+            <!-- End menu central -->
 
-    
+            <div class="col-sm-3 col-md-3">
+                <div class="card mb-4 box-shadow" style="width: 130%; background-color: rgb(232, 238, 250); border-radius: 10px; box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.22); text-align: center;">
+                    <div class="card-body">
+                        <h4 class="card-title pricing-card-title font-weight-bold mb-3">NAVEGAR POR TEMAS</h4>
+                        <ul style="text-align: left;">
+                            <li>MANUTENÇÃO</li>
+                            <li>HARDWARE</li>
+                            <li>SOFTWARE</li>
+                            <li>REDES</li>
+                            <li>PROGRAMAÇÃO</li>
+                            <li>BANCO DE DADOS</li>
+                            <li>ROBÓTICA</li>
+                            <li>TEORIA GERAL DA ADMINISTRAÇÃO</li>
+                        </ul>
+                        <button type="button" class="btn btn-primary btn-sm" style="border-radius: 9px; border-color:transparent; background-color: rgb(8, 53, 136);">MAIS TEMAS</button>
+                    </div>
+                </div>
+                <div class="card mb-4 box-shadow" style="width: 130%; background-color: rgb(232, 238, 250); border-radius: 10px; box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.22); text-align: center;">
+                    <div class="card-body">
+                        <h4 class="card-title pricing-card-title font-weight-bold mb-3">NAVEGAR POR GRUPOS</h4>
+                        <ul style="text-align: left;">
+                            <li>ENGENHARIA</li>
+                            <li>SISITEMAS DE INFORMAÇÃO</li>
+                            <li>EDUCAÇÃO FÍSICA</li>
+                            <li>ADMINISTRAÇÃO</li>
+                            <li>CONTABILIDADE</li>
+                            <li>NUTRIÇÃO</li>
+                            <li>MEDICINA</li>
+                            <li>AGRONOMIA</li>
+                        </ul>
+                        <button type="button" class="btn btn-primary btn-sm" style="border-radius: 9px; border-color:transparent; box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.22);  background-color: rgb(8, 53, 136);">MAIS GRUPOS</button>
+                    </div>
+                </div>
+            </div>
+            <!-- End menu lateral direito -->
+        </div>
+
+
 </body>
 
 </html>

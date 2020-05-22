@@ -20,7 +20,7 @@ class Conexao
             $arquivo = file_get_contents('../credentials/db.json');
             $json = json_decode($arquivo);
             //self::$instance = new pdo('pgsql:host=' . HOST . ';port=' . PORT . ';dbname=' . DBNAME, USER, PASS);
-            self::$instance = new pdo('pgsql:host=' . $json -> HOST . ';port=' . $json -> PORT . ';dbname=' .$json -> DBNAME,$json -> USER,$json -> PASSWORD);
+            self::$instance = new pdo('pgsql:host=' . $json->HOST . ';port=' . $json->PORT . ';dbname=' . $json->DBNAME, $json->USER, $json->PASSWORD);
         }
         return self::$instance;
     }
@@ -317,13 +317,13 @@ class Usuario
                         '{$this->nome}', 
                         '{$this->senha}', 
                         {$this->pontos_bonificacao} )";
-                        //{Utils::criptografar($this -> pontos_bonificacao)})";
-        
+        //{Utils::criptografar($this -> pontos_bonificacao)})";
+
         $stmt = Conexao::getInstance()->prepare($sql);
-        
-        if($stmt->execute() === false){
+
+        if ($stmt->execute() === false) {
             return $stmt->errorInfo();
-        }else{
+        } else {
             return '1';
         }
     }
@@ -810,66 +810,62 @@ class Card
     {
         echo $this->render();
     }
-    
 }
-class ListagemDuvidaEditar{
+class ListagemDuvidaEditar
+{
     private $duvida;
-class Login{
-    function __construct(){
 
 
-    function __construct($duvida){ 
-        $this -> duvida = $duvida;
-    
+    function __construct($duvida)
+    {
+        $this->duvida = $duvida;
     }
 
-    function render(){
+    function render()
+    {
         $usuario = new Usuario();
         $status = new Status();
         $categoria = new Categoria();
-        
-        $this -> buffer ="<div id=\"card\" class=\"card mb-4 box-shadow\"
-        style=\"width: 327%; border-radius: 10px;box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.22);text-align: center;\">";
-        $this -> buffer .= "<div class=\"card-body\" style=\"text-align: left;\">";
-        $this -> buffer .= "<h4 class=\"card-title pricing-card-title font-weight-bold mb-3\" style=\"text-align: left;\">{$this -> duvida -> getTitulo()}</h4>";
-        $this -> buffer .= "<button id=\"btn-editar\" type=\"button\" class=\"chip btn btn-primary btn-sm primary_color\" style=\"border-color: transparent; border-radius: 20px;height: 7%;font-size: 0.5em;  padding: 8px 16px 8px 16px; margin: 8px\" onclick = \"salvar()\">Editar</button>";
-        $this -> buffer .= "<button id=\"btn-editar\" type=\"button\" class=\"chip btn btn-primary btn-sm primary_color\" style=\"border-color: transparent; border-radius: 20px;height: 7%;font-size: 0.5em;  padding: 8px 16px 8px 16px; margin: 8px\" onclick = \"excluir()\">Excluir</button>";
-        $this -> buffer .= "<h6 class=\"card-title pricing-card-title font-weight-bold mb-3\" style=\"text-align: left;\"><img
-        src=\"../imagens/icons/usuario.png\" class=\"mr-3\" alt=\"\" > Por {$usuario -> listById($this -> duvida -> getusuarioId()) -> getNome()}</h6>";
-        $this -> buffer .="<h6 class=\"card-title pricing-card-title mb-0\">{$this -> duvida -> getDescricao()}</h6>";
-        $this -> buffer .= "<button type=\"button\" class=\"chip btn btn-primary btn-sm primary_color\" style=\"border-color: transparent; border-radius: 20px;height: 7%;font-size: 0.5em;  padding: 8px 16px 8px 16px; margin: 8px\">REDES</button>";
-        $this -> buffer .= "<button type=\"button\" class=\"chip btn btn-primary btn-sm primary_color\" style=\"border-color: transparent; border-radius: 20px;height: 7%;font-size: 0.5em;  padding: 8px 16px 8px 16px;\">REDES</button>";
-        $this -> buffer .= "</div>";
-        $this -> buffer .="</div>";
 
-        return $this -> buffer;
+        $this->buffer = "<div id=\"card\" class=\"card mb-4 box-shadow\"
+        style=\"width: 327%; border-radius: 10px;box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.22);text-align: center;\">";
+        $this->buffer .= "<div class=\"card-body\" style=\"text-align: left;\">";
+        $this->buffer .= "<h4 class=\"card-title pricing-card-title font-weight-bold mb-3\" style=\"text-align: left;\">{$this->duvida->getTitulo()}</h4>";
+        //$this->buffer .= "<button id=\"btn-editar\" type=\"button\" class=\"chip btn btn-primary btn-sm primary_color\" style=\"border-color: transparent; border-radius: 20px;height: 7%;font-size: 0.5em;  padding: 8px 16px 8px 16px; margin: 8px\" onclick = \"salvar()\">Editar</button>";
+        //$this->buffer .= "<button id=\"btn-editar\" type=\"button\" class=\"chip btn btn-primary btn-sm primary_color\" style=\"border-color: transparent; border-radius: 20px;height: 7%;font-size: 0.5em;  padding: 8px 16px 8px 16px; margin: 8px\" onclick = \"excluir()\">Excluir</button>";
+        $this->buffer .= "<h6 class=\"card-title pricing-card-title font-weight-bold mb-3\" style=\"text-align: left;\"><img
+        src=\"../imagens/icons/usuario.png\" class=\"mr-3\" alt=\"\" > Por {$usuario->listById($this->duvida->getusuarioId())->getNome()}</h6>";
+        $this->buffer .= "<h6 class=\"card-title pricing-card-title mb-0\">{$this->duvida->getDescricao()}</h6>";
+        $this->buffer .= "<button type=\"button\" class=\"chip btn btn-primary btn-sm primary_color\" style=\"border-color: transparent; border-radius: 20px;height: 7%;font-size: 0.5em;  padding: 8px 16px 8px 16px; margin: 8px\">REDES</button>";
+        $this->buffer .= "<button type=\"button\" class=\"chip btn btn-primary btn-sm primary_color\" style=\"border-color: transparent; border-radius: 20px;height: 7%;font-size: 0.5em;  padding: 8px 16px 8px 16px;\">REDES</button>";
+        $this->buffer .= "</div>";
+        $this->buffer .= "</div>";
+
+        return $this->buffer;
     }
-    
-    function Show(){
-        echo $this -> render();
+
+    function Show()
+    {
+        echo $this->render();
     }
-    }
-    class Login{
-        function __construct(){
-    
-<<<<<<< HEAD
-        }
-        function valida($email, $senha){
-    
-            $sql = "select * from usuario where email ='{$email}' and  senha='{$senha}'";
-            $stmt = Conexao::getInstance()->prepare($sql);
-            $stmt->execute();
-            $stat = $stmt -> fetch();
-            if($stat){
-                return true;
-            }else{
-                return false;
-            }
-    
-        }   
-    }	
-=======
 }
 
+class Login
+{
+    function __construct()
+    {
     }
->>>>>>> master
+    function valida($email, $senha)
+    {
+
+        $sql = "select * from usuario where email ='{$email}' and  senha='{$senha}'";
+        $stmt = Conexao::getInstance()->prepare($sql);
+        $stmt->execute();
+        $stat = $stmt->fetch();
+        if ($stat) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
