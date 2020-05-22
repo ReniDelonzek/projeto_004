@@ -858,12 +858,13 @@ class Login
     function valida($email, $senha)
     {
 
-        $sql = "select * from usuario where email ='{$email}' and  senha='{$senha}'";
+        $sql = "select * from usuario where email ='{$email}'";
         $stmt = Conexao::getInstance()->prepare($sql);
         $stmt->execute();
         $stat = $stmt->fetch();
         if ($stat) {
-            return true;
+            if(password_verify($senha,$stat['senha'])) return true;
+            else return false;
         } else {
             return false;
         }
