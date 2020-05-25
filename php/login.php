@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	if(!$_SESSION['email']){
+	if(!isset(($_SESSION['email']))){
 		echo('<!DOCTYPE html>
 		<html>
 			<head>

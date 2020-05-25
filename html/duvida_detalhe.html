@@ -27,7 +27,7 @@
                 success: function(data) {
                     if (data == '1') {
                         alert('Você não está logado!');
-                        window.location.href = "login.html";
+                        window.location.href = "../php/login.php";
                     } else {
                         //alert('A sessao talkey');  
                     }
@@ -43,7 +43,7 @@
                     success: function(data) {
                         if (data == '1') {
                             alert('Sua sessao expirou!');
-                            window.location.href = "login.html";
+                            window.location.href = "../php/login.php";
                         } else {
                             //alert('A sessao talkey');
                         }
@@ -118,14 +118,14 @@
 
     <!--menu esquerdo side bar-->
     <div class="container">
-        <div class="row justify-content-between" style="width:100%;">
+        <div id="principal" class="row justify-content-between" style="width:100%;">
             <div class="col-sm-3 col-md-3">
 
                 <div id="center-div"></div>
                 <!--Este botao é o do editar para voltar a pagina de edicao que deve ficar dentro do Card da pergunta-->
-                <a href="atualiza_duvida.html" class="btn btn-primary btn-sm">
-            Editar Pergunta 
-          </a>
+                <!--<a href="atualiza_duvida.html" class="btn btn-primary btn-sm">-->
+                <!--Editar Pergunta -->
+                <!--</a>-->
 
             </div>
             <div class="col-sm-3 col-md-3">
