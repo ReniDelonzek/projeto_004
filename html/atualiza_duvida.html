@@ -39,8 +39,10 @@
 
         function alterar() {
         var dados = $('#cartao_pergunta').find("input, select").serialize();
+        var id =  getQuery('id');
 
-
+        
+        dados = "id="+id+"&"+dados;
         console.log(dados);
 
 
@@ -49,11 +51,11 @@
             type: 'POST',
             data: dados,
             success: function(data) {
-                alert(data);
+                
             }
 
         });
-        //window.location.href = "http://localhost/projeto_004/";
+        window.location.href = "http://localhost/projeto_004/";
 
 
 
