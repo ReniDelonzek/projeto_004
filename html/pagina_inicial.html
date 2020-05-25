@@ -48,8 +48,7 @@
 
         function salvar() {
             var dados = $('#cartao_pergunta').find("input, select").serialize();
-            console.log(dados);
-            //alert(dados);
+
 
             $.ajax({
                 url: '../php/ajax/cadastrar_duvida.php',
@@ -60,6 +59,7 @@
                 }
 
             });
+            window.location.href = "pagina_inicial.html";
         }
 
         $(document).ready(function() {

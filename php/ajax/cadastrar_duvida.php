@@ -19,9 +19,10 @@ echo "|";
 */
 $sql = "insert into  duvida (titulo, descricao, categoria_id,usuario_id, status_id, pontos)
             values('{$titulo}', '{$duvida}', {$categoria}, {$usuario}, {$status}, {$pontos})";
-        echo $sql;
+        //echo $sql;
         $stmt = Conexao::getInstance()->prepare($sql);
         $stmt->execute();
+        echo "Duvida Cadastrada com sucesso!";
 /*
 $duv = new Duvida($titulo, $duvida, $categoria, $usuario, $status, 0);
 echo($duv -> save());
