@@ -45,7 +45,17 @@
                 }
             });
         });
-
+        
+        $(document).ready(function() {
+            $.ajax({
+                url: '../php/ajax/gera_menu_categorias.php',
+                method: 'POST',
+                success: function(data) {
+                    $('#temas').html(data);
+                }
+            });
+        });
+        
         function salvar() {
             var dados = $('#cartao_pergunta').find("input, select").serialize();
 
@@ -135,7 +145,7 @@
             </div>
             <!-- End menu central -->
 
-            <div class="col-sm-3 col-md-3">
+            <div id = "temas" class="col-sm-3 col-md-3">
                 <div class="card mb-4 box-shadow" style="width: 130%; background-color: rgb(232, 238, 250); border-radius: 10px; box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.22); text-align: center;">
                     <div class="card-body">
                         <h4 class="card-title pricing-card-title font-weight-bold mb-3">NAVEGAR POR TEMAS</h4>
