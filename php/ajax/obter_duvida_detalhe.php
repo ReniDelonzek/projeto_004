@@ -39,9 +39,7 @@
         $buffer = "<div id=\"card\" class=\"card mb-4 box-shadow\"
         style=\"width: 327%; border-radius: 10px;box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.22);text-align: center;\">";
         $buffer .= "<div class=\"card-body\" style=\"text-align: left;\">";
-        $buffer .= "<h4 class=\"card-title pricing-card-title font-weight-bold mb-3\" style=\"text-align: left;\">{$row['titulo']}</h4>";
-        //$buffer .= "<button id=\"btn-editar\" type=\"button\" class=\"chip btn btn-primary btn-sm primary_color\" style=\"border-color: transparent; border-radius: 20px;height: 7%;font-size: 0.5em;  padding: 8px 16px 8px 16px; margin: 8px\" onclick = \"salvar()\">Editar</button>";
-        //$buffer .= "<button id=\"btn-editar\" type=\"button\" class=\"chip btn btn-primary btn-sm primary_color\" style=\"border-color: transparent; border-radius: 20px;height: 7%;font-size: 0.5em;  padding: 8px 16px 8px 16px; margin: 8px\" onclick = \"excluir()\">Excluir</button>";
+        $buffer .= "<h4 class=\"card-title pricing-card-title font-weight-bold mb-3\" style=\"text-align: left;\">{$row['titulo']}</h4>";    
         $buffer .= "<h6 class=\"card-title pricing-card-title font-weight-bold mb-3\" style=\"text-align: left;\"><img
         src=\"../imagens/icons/usuario.png\" class=\"mr-3\" alt=\"\" > Por {$row['usuario']}</h6>";
         $buffer .= "<h6 class=\"card-title pricing-card-title mb-0\">{$row['descricao']}</h6>";
@@ -58,7 +56,10 @@
     echo "<!--Este botao é o do editar para voltar a pagina de edicao que deve ficar dentro do Card da pergunta-->";
     echo "<a href=\"atualiza_duvida.html?id={$id}\" class=\"btn btn-primary btn-sm\">";
     echo "Editar Pergunta";
+    
     echo "</a>";
+    session_start();
+    
     
 
 ?>

@@ -28,6 +28,7 @@
 									alert("Usuario ou Senha errados");
 								}else{
 									alert(data);
+									console.log(data);
 								}
 							},
 						})

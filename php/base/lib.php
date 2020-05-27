@@ -869,4 +869,19 @@ class Login
             return false;
         }
     }
+    function retornaIdpeloEmail($email){
+        $sql =
+		"select 
+		usuario.id as id
+		,usuario.email as email
+	from usuario 
+         where usuario.email = '{$email}'";
+         echo $sql;
+		$stmt = Conexao::getInstance()->prepare($sql);
+        $stmt->execute();
+        $stat = $stmt->fetch();
+        if ($stat) {
+            return $stat['id'];
+    }
+}
 }
