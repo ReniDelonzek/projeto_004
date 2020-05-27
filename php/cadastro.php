@@ -66,7 +66,7 @@
 
             <div id='campo-email' class=''>
 
-              <i class="fas fa-user"></i>
+              <i class="fa fa-at" aria-hidden="true"></i>
               <input type="text" placeholder="Email" class="input" id="email" name="email">
             </div>
             <div id='campo-senha' class=''>
