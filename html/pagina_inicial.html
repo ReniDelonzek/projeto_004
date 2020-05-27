@@ -99,6 +99,15 @@
             setInterval(function() {
                 check_session();
             }, 10000);
+            $(".navbar button").click(function(){
+                $.ajax({
+                    url:"../php/ajax/logout.php",
+                    success:function(){
+                        check_session();
+                    }
+
+                })
+            })
         });
     </script>
 </header>
@@ -106,6 +115,7 @@
 <body style="width: 100%;">
     <nav class="navbar">
         <a class="navbar-brand ml-5" href="#"><img src="../imagens/icons/logo-ask.png" alt=""></a>
+        <button>Sair</button>
     </nav>
     <!--End Nav Menu superior-->
     <div class="container">
