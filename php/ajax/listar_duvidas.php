@@ -6,7 +6,8 @@
 	duvida.id, 
 	duvida.titulo as titulo,
 	duvida.descricao as descricao,
-	usuario.nome as usuario,
+    usuario.nome as usuario,
+    categoria.id as id_categoria,
 	categoria.descricao as categoria,
 	duvida_status.descricao as status
 	from 
@@ -32,8 +33,9 @@ $stmt->execute();
         echo  "        <div class=\"card-body\" style=\"padding-top: 0;\">";
         echo  "            <!-- <h1 class=\"card-title pricing-card-title\">$0 <small class=\"text-muted\">/ mo</small></h1> -->";
         echo  "            <p>{$row['descricao']}</p>";
-        echo  "<button type=\"button\" class=\"chip btn btn-primary btn-sm primary_color\" style=\"border-color: transparent; border-radius: 20px;height: 7%;font-size: 0.5em;  padding: 8px 16px 8px 16px; margin-right: 8px\">REDES</button>";
-        echo  "<button type=\"button\" class=\"btn btn-primary btn-sm primary_color\" style=\"border-color: transparent; border-radius: 20px;height: 7%;font-size: 0.5em;  padding: 8px 16px 8px 16px;\">MANUTENÇÃO</button>";
+        //echo  "<button type=\"button\" class=\"chip btn btn-primary btn-sm primary_color\" style=\"border-color: transparent; border-radius: 20px;height: 7%;font-size: 0.5em;  padding: 8px 16px 8px 16px; margin-right: 8px\">REDES</button>";
+        //echo  "<button type=\"button\" class=\"btn btn-primary btn-sm primary_color\" style=\"border-color: transparent; border-radius: 20px;height: 7%;font-size: 0.5em;  padding: 8px 16px 8px 16px;\">MANUTENÇÃO</button>";
+        echo  "<button type=\"button\" class=\"chip btn btn-primary btn-sm primary_color\" style=\"border-color: transparent; border-radius: 20px;height: 7%;font-size: 0.5em;  padding: 8px 16px 8px 16px; margin-right: 8px\">{$row['categoria']}</button>";
         echo  "</div>";
         echo  "</div>";
         echo  "</a>";
