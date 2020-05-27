@@ -29,7 +29,7 @@
                 success: function(data) {
                     if (data == '1') {
                         alert('Você não está logado!');
-                        window.location.href = "login.html";
+                        window.location.href = "../php/login.php";
                     } else {
                         //alert('A sessao talkey');  
                     }
@@ -45,12 +45,30 @@
                 }
             });
         });
-
+        
+        $(document).ready(function() {
+            $.ajax({
+                url: '../php/ajax/gera_menu_categorias.php',
+                method: 'POST',
+                success: function(data) {
+                    $('#temas').html(data);
+                }
+            });
+        });     
+        $(document).ready(function() {
+            $.ajax({
+                url: '../php/ajax/cartao_pergunta.php',
+                method: 'POST',
+                success: function(data) {
+                    $('#cartao_pergunta').html(data);
+                }
+            });
+        });
+        
+        
         function salvar() {
             var dados = $('#cartao_pergunta').find("input, select").serialize();
-            console.log(dados);
-            //alert(dados);
-
+            
             $.ajax({
                 url: '../php/ajax/cadastrar_duvida.php',
                 type: 'POST',
@@ -60,6 +78,7 @@
                 }
 
             });
+            window.location.href = "pagina_inicial.html";
         }
 
         $(document).ready(function() {
@@ -70,7 +89,7 @@
                     success: function(data) {
                         if (data == '1') {
                             alert('Sua sessao expirou!');
-                            window.location.href = "login.html";
+                            window.location.href = "../php/login.php";
                         } else {
                             //alert('A sessao talkey');  
                         }
@@ -80,6 +99,15 @@
             setInterval(function() {
                 check_session();
             }, 10000);
+            $(".navbar button").click(function(){
+                $.ajax({
+                    url:"../php/ajax/logout.php",
+                    success:function(){
+                        check_session();
+                    }
+
+                })
+            })
         });
     </script>
 </header>
@@ -87,44 +115,14 @@
 <body style="width: 100%;">
     <nav class="navbar">
         <a class="navbar-brand ml-5" href="#"><img src="../imagens/icons/logo-ask.png" alt=""></a>
+        <button>Sair</button>
     </nav>
     <!--End Nav Menu superior-->
     <div class="container">
         <div id="cartao_pergunta" class="cartao_pergunta">
             <div class="div_pergunta">
-                <label>Faça sua pergunta agora mesmo!</label>
+
             </div>
-            <div class="div_icone">
-                <img src="../img/icon.jpeg">
-            </div>
-            <div class="div_seletores">
-                <label class="div_cardtexts">Título</label><br>
-                <input type="text" name="titulo" placeholder="Escolhe um título bem chamativo ai!"><br><br>
-                <label class="div_cardtexts">Pergunta</label><br>
-                <input type="text" name="pergunta" placeholder="Insira sua pergunta"><br>
-            </div> <br>
-            <hr></hr>
-            <div class="div_selects">
-                <label>Vai valer:</label><br>
-                <select name="pontos">
-                <option>10 pontos</option>
-                <option>20 pontos</option>
-                <option>30 pontos</option>
-            </select>
-            </div>
-            <div class="div_selects">
-                <label>Matéria:</label><br>
-                <select name="materia">
-                <option>Robótica</option>
-                <option>Programação</option>
-                <option>Redes</option>
-            </select>
-            </div>
-            <div class="div_selects">
-                <label>Confirmação:</label><br>
-                <input type="submit" value="Publicar" id="salvar" onclick="salvar()">
-            </div>
-        </div>
     </div>
     <br>
     <div class="container">
@@ -135,39 +133,9 @@
             </div>
             <!-- End menu central -->
 
-            <div class="col-sm-3 col-md-3">
-                <div class="card mb-4 box-shadow" style="width: 130%; background-color: rgb(232, 238, 250); border-radius: 10px; box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.22); text-align: center;">
-                    <div class="card-body">
-                        <h4 class="card-title pricing-card-title font-weight-bold mb-3">NAVEGAR POR TEMAS</h4>
-                        <ul style="text-align: left;">
-                            <li>MANUTENÇÃO</li>
-                            <li>HARDWARE</li>
-                            <li>SOFTWARE</li>
-                            <li>REDES</li>
-                            <li>PROGRAMAÇÃO</li>
-                            <li>BANCO DE DADOS</li>
-                            <li>ROBÓTICA</li>
-                            <li>TEORIA GERAL DA ADMINISTRAÇÃO</li>
-                        </ul>
-                        <button type="button" class="btn btn-primary btn-sm" style="border-radius: 9px; border-color:transparent; background-color: rgb(8, 53, 136);">MAIS TEMAS</button>
-                    </div>
-                </div>
-                <div class="card mb-4 box-shadow" style="width: 130%; background-color: rgb(232, 238, 250); border-radius: 10px; box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.22); text-align: center;">
-                    <div class="card-body">
-                        <h4 class="card-title pricing-card-title font-weight-bold mb-3">NAVEGAR POR GRUPOS</h4>
-                        <ul style="text-align: left;">
-                            <li>ENGENHARIA</li>
-                            <li>SISITEMAS DE INFORMAÇÃO</li>
-                            <li>EDUCAÇÃO FÍSICA</li>
-                            <li>ADMINISTRAÇÃO</li>
-                            <li>CONTABILIDADE</li>
-                            <li>NUTRIÇÃO</li>
-                            <li>MEDICINA</li>
-                            <li>AGRONOMIA</li>
-                        </ul>
-                        <button type="button" class="btn btn-primary btn-sm" style="border-radius: 9px; border-color:transparent; box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.22);  background-color: rgb(8, 53, 136);">MAIS GRUPOS</button>
-                    </div>
-                </div>
+            <div id = "temas" class="col-sm-3 col-md-3">
+
+    
             </div>
             <!-- End menu lateral direito -->
         </div>

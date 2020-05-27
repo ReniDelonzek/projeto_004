@@ -863,10 +863,25 @@ class Login
         $stmt->execute();
         $stat = $stmt->fetch();
         if ($stat) {
-            if(password_verify($senha,$stat['senha'])) return true;
+            if(password_verify($senha, $stat['senha'])) return true;
             else return false;
         } else {
             return false;
         }
     }
+    function retornaIdpeloEmail($email){
+        $sql =
+		"select 
+		usuario.id as id
+		,usuario.email as email
+	from usuario 
+         where usuario.email = '{$email}'";
+         echo $sql;
+		$stmt = Conexao::getInstance()->prepare($sql);
+        $stmt->execute();
+        $stat = $stmt->fetch();
+        if ($stat) {
+            return $stat['id'];
+    }
+}
 }

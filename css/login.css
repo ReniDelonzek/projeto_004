@@ -78,7 +78,7 @@ body{
 	color: #ccc;
 }
 
-#campo-email , #campo-senha{
+#campo-nome, #campo-email , #campo-senha{
 	width: 100%;
 	height: 70px;
 	box-shadow: 0 1px 5px rgba(0,0,0,.20);
@@ -91,11 +91,11 @@ body{
 
 }
 
-#campo-senha{
+#campo-email , #campo-senha{
 	margin-top: 30px;
 }
 
-#campo-email input , #campo-senha input{
+#campo-nome input , #campo-email input , #campo-senha input{
 	border: none;
 	width: 90%;
 	padding-left: 10PX;

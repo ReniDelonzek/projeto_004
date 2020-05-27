@@ -67,7 +67,7 @@
             success: function(data) {
                 if (data == '1') {
                     alert('Você não está logado!');
-                    window.location.href = "login.html";
+                    window.location.href = "../php/login.php";
                 } else {
                     //alert('A sessao talkey');  
                 }
@@ -83,7 +83,7 @@
                 success: function(data) {
                     if (data == '1') {
                         alert('Sua sessao expirou!');
-                        window.location.href = "login.html";
+                        window.location.href = "../php/login.php";
                     } else {
                         //alert('A sessao talkey');  
                     }
