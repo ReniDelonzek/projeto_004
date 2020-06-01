@@ -12,6 +12,7 @@
     usuario.nome as usuario,
     categoria.id as id_categoria,
 	categoria.descricao as categoria,
+	duvida.status_id,
 	duvida_status.descricao as status
 	from 
 		duvida
@@ -46,21 +47,30 @@
         src=\"../imagens/icons/usuario.png\" class=\"mr-3\" alt=\"\" > Por {$row['usuario']}</h6>";
         $buffer .= "<h6 class=\"card-title pricing-card-title mb-0\">{$row['descricao']}</h6>";
         $buffer .= "<button type=\"button\" class=\"chip btn btn-primary btn-sm primary_color\" style=\"border-color: transparent; border-radius: 20px;height: 7%;font-size: 0.5em;  padding: 8px 16px 8px 16px; margin: 8px\">{$row['categoria']}</button>";
-        
         $buffer .= "</div>";
+	if($row['id_usuario'] == $_SESSION['id'] && ($row['status_id']!=1)){
+            $buffer .= "<div>";
+			$buffer .= "<a href=\"atualiza_duvida.html?id={$id}\" style=\"margin:10px 20px\" class=\"btn btn-primary btn-sm\">Editar Pergunta</a>";
+            $buffer .= "<a href=\"excluir_duvida.html?id={$id}\" class=\"btn btn-primary btn-sm\">Excluir Pergunta</a>";
+            $buffer .= "</div>";
+		}else if($row['status_id'] == 1){
+            $buffer .= "<div>";
+                $buffer .= "        Pergunta respondida!!";
+            $buffer .= "</div>";
+        }
         $buffer .= "</div>";
 
         echo $buffer;
 
     //----------------------
     echo "</div>";
-    echo "</div>";
     echo "<!--Este botao é o do editar para voltar a pagina de edicao que deve ficar dentro do Card da pergunta-->";
-    if($row['id_usuario'] == $_SESSION['id']){
-        echo "<a href=\"atualiza_duvida.html?id={$id}\" class=\"btn btn-primary btn-sm\">";
-        echo "Editar Pergunta";
-        
-        echo "</a>";
+    if($row['id_usuario'] == $_SESSION['id'] && ($row['status_id']!=1)){
+        echo("<div class=\"boxes\" style=\"width: 327%;\"> ");
+        echo("<input type=\"checkbox\" id=\"box-1\" name=\"meu_checkbox\" value=\"respondida\">");
+        echo("<label for=\"box-1\">A pergunta já foi respondida?</label>");
+        echo("<button onclick=\"concluir()\" class=\"btn btn-primary btn-sm\">Salvar</button>");
+        echo("</div>");
     }
   
     /**----------------------------------------------------------------------------------
