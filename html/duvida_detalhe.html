@@ -16,6 +16,7 @@
 
     <link rel="stylesheet" type="text/css" href="../css/style.css" />
     <link rel="stylesheet" type="text/css" href="../css/duvida_detalhe.css" />
+    <script src="https://kit.fontawesome.com/2ca8aeae4b.js" crossorigin="anonymous"></script>
 
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -59,7 +60,7 @@
             return (window.location.search.match(new RegExp('[?&]' + q + '=([^&]+)')) || [, null])[1];
         }
 
-        
+
         $(document).ready(function() {
             $.ajax({
                 url: '../php/ajax/obter_duvida_detalhe.php',
@@ -104,17 +105,17 @@
                 }
             });
         });
-        
-        function concluir(){
-            if($("[name='meu_checkbox']").filter(':checked').val() == "respondida"){
-                if(confirm("Sua duvida foi esclarecida?")){
+
+        function concluir() {
+            if ($("[name='meu_checkbox']").filter(':checked').val() == "respondida") {
+                if (confirm("Sua duvida foi esclarecida?")) {
                     $.ajax({
-                        url : "../php/ajax/concluir_duvida.php",
+                        url: "../php/ajax/concluir_duvida.php",
                         data: {
                             'id': getQuery('id')
                         },
-                        method :"post",
-                        success : function(data){						
+                        method: "post",
+                        success: function(data) {
                             $.ajax({
                                 url: '../php/ajax/obter_duvida_detalhe.php',
                                 method: 'post',
@@ -128,56 +129,68 @@
                         },
                     });
                 }
-            }else{
+            } else {
                 alert("");
             }
         }
     </script>
     <style>
         @import url(https://fonts.googleapis.com/css?family=Open+Sans);
-        html { height: 100%; }
+        html {
+            height: 100%;
+        }
+        
         .boxes {
-        margin: auto;
-        padding: 10px;
-        background: rgba(0,0,0,0.0);
+            margin: auto;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.0);
         }
-        input[type="checkbox"] { display: none; }
-        input[type="checkbox"] + label {
-        display: block;
-        position: relative;
-        padding-left: 35px;
-        margin-bottom: 20px;
-        font: 14px/20px 'Open Sans', Arial, sans-serif;
-        color: black;
-        cursor: pointer;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
+        
+        input[type="checkbox"] {
+            display: none;
         }
-        input[type="checkbox"] + label:last-child { margin-bottom: 0; }
-        input[type="checkbox"] + label:before {
-        content: '';
-        display: block;
-        width: 20px;
-        height: 20px;
-        border: 2px solid blue;
-        position: absolute;
-        left: 0;
-        top: 0;
-        opacity: .6;
-        -webkit-transition: all .12s, border-color .08s;
-        transition: all .12s, border-color .08s;
+        
+        input[type="checkbox"]+label {
+            display: block;
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 20px;
+            font: 14px/20px 'Open Sans', Arial, sans-serif;
+            color: black;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
         }
-        input[type="checkbox"]:checked + label:before {
-        width: 10px;
-        top: -5px;
-        left: 5px;
-        border-radius: 0;
-        opacity: 1;
-        border-top-color: transparent;
-        border-left-color: transparent;
-        -webkit-transform: rotate(45deg);
-        transform: rotate(45deg);
+        
+        input[type="checkbox"]+label:last-child {
+            margin-bottom: 0;
+        }
+        
+        input[type="checkbox"]+label:before {
+            content: '';
+            display: block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid blue;
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: .6;
+            -webkit-transition: all .12s, border-color .08s;
+            transition: all .12s, border-color .08s;
+        }
+        
+        input[type="checkbox"]:checked+label:before {
+            width: 10px;
+            top: -5px;
+            left: 5px;
+            border-radius: 0;
+            opacity: 1;
+            border-top-color: transparent;
+            border-left-color: transparent;
+            -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
         }
     </style>
 </header>

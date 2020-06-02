@@ -3,12 +3,13 @@
 
     $sql =
     "select 
-	duvida.id, 
+	duvida.id as id, 
 	duvida.titulo as titulo,
 	duvida.descricao as descricao,
     usuario.nome as usuario,
     categoria.id as id_categoria,
-	categoria.descricao as categoria,
+    categoria.descricao as categoria,
+    duvida.status_id,
 	duvida_status.descricao as status
 	from 
 		duvida
@@ -26,7 +27,7 @@ $stmt->execute();
             echo  "<div class=\"card-deck mb-3 text-center\">";
         }
 
-        echo "<div class=\"card mb-4 \" style=\"text-align: left;background-color: white; height: 100%; border-radius: 10px;\">";
+        echo "<div id=\"card{$row['id']}\" class=\"card mb-4 \" style=\"text-align: left;background-color: white; height: 90%; border-radius: 10px;\">";
         echo  "<a href='{../../../html/duvida_detalhe.html?id={$row['id']}' style=\"text-decoration:none; color:black\">";
         echo  "    <div class=\"card-header\" style=\"background-color: transparent; border-color: transparent;\">";
         echo  "        <h4 class=\"my-0 font-weight-normal font-weight-bold\"><p>{$row['titulo']} </p></h4>";
@@ -37,6 +38,12 @@ $stmt->execute();
         //echo  "<button type=\"button\" class=\"btn btn-primary btn-sm primary_color\" style=\"border-color: transparent; border-radius: 20px;height: 7%;font-size: 0.5em;  padding: 8px 16px 8px 16px;\">MANUTENÇÃO</button>";
         echo  "<button type=\"button\" class=\"chip btn btn-primary btn-sm primary_color\" style=\"border-color: transparent; border-radius: 20px;height: 7%;font-size: 0.5em;  padding: 8px 16px 8px 16px; margin-right: 8px\">{$row['categoria']}</button>";
         echo  "</div>";
+        if($row['status_id'] == 1){
+            echo "        <div class=\"d-flex justify-content-end\">";
+            echo "          <span><i class=\"fa fa-check fa-2x\" aria-hidden=\"true\" style=\"color: green;\"></i></span>";
+            echo "        </div>";
+            echo "<style> #card{$row['id']} {border-color: green;} </style>";
+        }
         echo  "</div>";
         echo  "</a>";
         echo  "</div>";

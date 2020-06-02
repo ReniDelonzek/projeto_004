@@ -39,7 +39,7 @@
     */
     //---------------------
         $row =  $stmt->fetch();
-        $buffer = "<div id=\"card\" class=\"card mb-4 box-shadow\"
+        $buffer = "<div id=\"card{$id}\" class=\"card mb-4 box-shadow\"
         style=\"width: 327%; border-radius: 10px;box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.22);text-align: center;\">";
         $buffer .= "<div class=\"card-body\" style=\"text-align: left;\">";
         $buffer .= "<h4 class=\"card-title pricing-card-title font-weight-bold mb-3\" style=\"text-align: left;\">{$row['titulo']}</h4>";    
@@ -55,8 +55,9 @@
             $buffer .= "</div>";
 		}else if($row['status_id'] == 1){
             $buffer .= "<div>";
-                $buffer .= "        Pergunta respondida!!";
+                $buffer .= "       <span><i class=\"fa fa-check fa-2x\" aria-hidden=\"true\" style=\"color: green;\"></i></span>";
             $buffer .= "</div>";
+            $buffer .= "<style> #card{$id} {border-color: green;} </style>";
         }
         $buffer .= "</div>";
 
