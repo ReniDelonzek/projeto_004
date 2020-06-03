@@ -82,7 +82,7 @@ if ($row['id_usuario'] == $_SESSION['id'] && ($row['status_id'] != 1)) {
 
 $buffer = "<div class=\"card mb-4 box-shadow\" style=\"width: 327%;border-radius: 10px;box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.22);text-align: center;\">";
 $buffer .= "<div class=\"card-body\">";
-$buffer .= "<h4 class=\"card-title pricing-card-title font-weight-bold mb-3\" style=\"text-align: center;\">Enviar Resposta</h4>";
+$buffer .= "<h4 class=\"card-title pricing-card-title font-weight-bold mb-3\" style=\"text-align: left;\">Responder pergunta</h4>";
 $buffer .= "<textarea id=\"conteudo\" style=\"width:80%;padding:20px 10px;box-shadow: 0px 0px 5px gray;border:none;resize: none\"></textarea>";
 $buffer .= "</div>";
 $buffer .= "<a onclick=\"cadastrar_resposta()\" style=\"width:200px;margin: 0 auto;padding:10px 0;margin-bottom:20px; color: #fff\" class=\"btn-primary\">Enviar Resposta</a>";
