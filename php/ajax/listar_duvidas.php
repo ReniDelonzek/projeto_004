@@ -24,10 +24,10 @@ $stmt->execute();
     while ($row = $stmt->fetch()) {
         if ($i % 2 == 0) {
             echo  "</div>";
-            echo  "<div class=\"card-deck mb-3 text-center\">";
+            echo  "<div class=\"card-deck col-12 mb-3 text-center\">";
         }
 
-        echo "<div id=\"card{$row['id']}\" class=\"card mb-4 \" style=\"text-align: left;background-color: white; height: 90%; border-radius: 10px;\">";
+        echo "<div id=\"card{$row['id']}\" class=\"card mb-4 col-6 \" style=\"text-align: left;background-color: white; height: 90%; border-radius: 10px;\">";
         echo  "<a href='{../../../html/duvida_detalhe.html?id={$row['id']}' style=\"text-decoration:none; color:black\">";
         echo  "    <div class=\"card-header\" style=\"background-color: transparent; border-color: transparent;\">";
         echo  "        <h4 class=\"my-0 font-weight-normal font-weight-bold\"><p>{$row['titulo']} </p></h4>";
