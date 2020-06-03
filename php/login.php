@@ -1,7 +1,7 @@
 <?php
-	session_start();
-	if(!isset(($_SESSION['email']))){
-		echo('<!DOCTYPE html>
+session_start();
+if (!isset(($_SESSION['email']))) {
+	echo ('<!DOCTYPE html>
 		<html>
 			<head>
 			<meta charset="utf-8">
@@ -62,14 +62,14 @@
 								</div>
 								<input type="button" class="btn" value="Login" id="enviar" onclick="login()">
 							</div>
+							<a style="text-decoration: none" href="cadastro.php">Criar conta</a> 
 						</div>
 						<div class="img-mobile centro-tela">
 							<img  src="../imagens/artigo.png">
 						</div> 
 				</div>
 			</body>
-		</html> '); 
-	}else{
-		header('Location:../html/pagina_inicial.html');
-	}
-?>
+		</html> ');
+} else {
+	header('Location:../html/pagina_inicial.html');
+}

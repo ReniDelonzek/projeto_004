@@ -55,7 +55,7 @@
           <img src="../imagens/colabora.png">
         </div>
         <div class='container-login centro-tela'>
-          <h2>Faça seu <span style="color:#FFBE24!important"> login</span></h2>
+          <h2>Criar uma <span style="color:#FFBE24!important"> conta</span></h2>
           <div class="container-dados" id="div_login">
 
             <div id='campo-nome' class=''>
