@@ -32,34 +32,27 @@
     echo "</div> <br>";
     echo "<hr></hr>";
     echo "<div class=\"div_selects\">";
-    
     echo "  <label>Vai valer:</label><br>";
-    echo  "<select name=\"pontos\">";
-    echo  "<option value=\"10\">10 pontos</option>";
-    echo  "<option value=\"20\">20 pontos</option>";
-    echo  "<option value=\"30\">30 pontos</option>";
-    echo  "</select>";
-    echo  "</div>";
-    echo  "<div class=\"div_selects\">";
-    echo  "<label>Matéria:</label><br>";
-    echo  "<select name=\"materia\">";
-    
-    $sql = "select * from categoria";
-    $stmt = Conexao::getInstance()->prepare($sql);
-    $stmt->execute();
-    while ($row = $stmt->fetch()) {
-        //$menuTemas .= "<li>".$row['descricao']."</li>";
-        echo  "<option value=\"{$row['id']}\">{$row['descricao']}</option>";
-
-    }
-    echo  "</select>";
-    
+    echo "      <select name=\"pontos\">";
+    echo "          <option>10 pontos</option>";
+    echo "          <option>20 pontos</option>";
+    echo "          <option>30 pontos</option>";
+    echo "          </select>";
+    echo "   </div>";
+    echo "          <div class=\"div_selects\">";
+    echo "          <label>Matéria:</label><br>";
+    echo "          <select id=\"materia\" name=\"materia\">";
+    echo "          <option value=\"1\">Robótica</option>";
+    echo "          <option value=\"2\"> Programação</option>";
+    echo "          <option value=\"3\">Redes</option>";
+    echo "          </select>";
     echo "          </div>";
     echo "          <div class=\"div_selects\">";
     echo "          <label>Confirmação:</label><br>";
-    echo "          <input type=\"submit\" value=\"Alterar\" id=\"alterar\" onclick=\"alterar()\">";
+    echo "          <a href="./php\login.php"> input type=\"submit\" value=\"Alterar\" id=\"alterar\" onclick=\"alterar()\"</a>";
     echo "          </div>";
     echo "          </div>";
 
         
         ?>
+       
