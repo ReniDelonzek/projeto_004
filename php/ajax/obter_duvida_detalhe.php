@@ -12,6 +12,7 @@
     usuario.nome as usuario,
     categoria.id as id_categoria,
 	categoria.descricao as categoria,
+	duvida.status_id,
 	duvida_status.descricao as status
 	from 
 		duvida
@@ -38,7 +39,7 @@
     */
     //---------------------
         $row =  $stmt->fetch();
-        $buffer = "<div id=\"card\" class=\"card mb-4 box-shadow\"
+        $buffer = "<div id=\"card{$id}\" class=\"card mb-4 box-shadow\"
         style=\"width: 327%; border-radius: 10px;box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.22);text-align: center;\">";
         $buffer .= "<div class=\"card-body\" style=\"text-align: left;\">";
         $buffer .= "<h4 class=\"card-title pricing-card-title font-weight-bold mb-3\" style=\"text-align: left;\">{$row['titulo']}</h4>";    
@@ -46,21 +47,31 @@
         src=\"../imagens/icons/usuario.png\" class=\"mr-3\" alt=\"\" > Por {$row['usuario']}</h6>";
         $buffer .= "<h6 class=\"card-title pricing-card-title mb-0\">{$row['descricao']}</h6>";
         $buffer .= "<button type=\"button\" class=\"chip btn btn-primary btn-sm primary_color\" style=\"border-color: transparent; border-radius: 20px;height: 7%;font-size: 0.5em;  padding: 8px 16px 8px 16px; margin: 8px\">{$row['categoria']}</button>";
-        
         $buffer .= "</div>";
+	if($row['id_usuario'] == $_SESSION['id'] && ($row['status_id']!=1)){
+            $buffer .= "<div>";
+			$buffer .= "<a href=\"atualiza_duvida.html?id={$id}\" style=\"margin:10px 20px\" class=\"btn btn-primary btn-sm\">Editar Pergunta</a>";
+            $buffer .= "<a href=\"../php/ajax/excluir_duvida.php?id={$id}\" class=\"btn btn-primary btn-sm\">Excluir Pergunta</a>";
+            $buffer .= "</div>";
+		}else if($row['status_id'] == 1){
+            $buffer .= "<div>";
+                $buffer .= "       <span><i class=\"fa fa-check fa-2x\" aria-hidden=\"true\" style=\"color: green;\"></i></span>";
+            $buffer .= "</div>";
+            $buffer .= "<style> #card{$id} {border-color: green;} </style>";
+        }
         $buffer .= "</div>";
 
         echo $buffer;
 
     //----------------------
     echo "</div>";
-    echo "</div>";
     echo "<!--Este botao é o do editar para voltar a pagina de edicao que deve ficar dentro do Card da pergunta-->";
-    if($row['id_usuario'] == $_SESSION['id']){
-        echo "<a href=\"atualiza_duvida.html?id={$id}\" class=\"btn btn-primary btn-sm\">";
-        echo "Editar Pergunta";
-        
-        echo "</a>";
+    if($row['id_usuario'] == $_SESSION['id'] && ($row['status_id']!=1)){
+        echo("<div class=\"boxes\" style=\"width: 327%;\"> ");
+        echo("<input type=\"checkbox\" id=\"box-1\" name=\"meu_checkbox\" value=\"respondida\">");
+        echo("<label for=\"box-1\">A pergunta já foi respondida?</label>");
+        echo("<button onclick=\"concluir()\" class=\"btn btn-primary btn-sm\">Salvar</button>");
+        echo("</div>");
     }
   
     /**----------------------------------------------------------------------------------
@@ -68,6 +79,19 @@
      * ----------------------------------------------------------------------------------
      * 
      */
+	 
+	 $buffer = "<div class=\"card mb-4 box-shadow\" style=\"width: 327%;border-radius: 10px;box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.22);text-align: center;\">";
+     $buffer .= "<div class=\"card-body\">";
+     $buffer .= "<h4 class=\"card-title pricing-card-title font-weight-bold mb-3\" style=\"text-align: center;\">Enviar Resposta</h4>";
+	 $buffer .= "<textarea id=\"conteudo\" style=\"width:80%;padding:20px 10px;box-shadow: 0px 0px 5px gray;border:none;resize: none\"></textarea>";
+	 $buffer .= "</div>";
+	 $buffer .= "<a onclick=\"cadastrar_resposta()\" style=\"width:200px;margin: 0 auto;padding:10px 0;margin-bottom:20px\" class=\"btn btn-success btn-sm\">Enviar Pergunta</a>";
+	 $buffer .= "</div>";
+
+     if($row['id_usuario'] != $_SESSION['id'] && ($row['status_id']!=1)){
+	    echo $buffer;
+     }
+	 
     $sql =
         "select 
             duvida_resposta.id as id,
