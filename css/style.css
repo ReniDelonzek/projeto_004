@@ -111,7 +111,7 @@ body {
 .div_selects input {
     width: 130px;
     height: 30px;
-    background-color: #FFD700;
+    background-color: #041C47;
     border-radius: 10px;
     font-size: 10px;
     color: white;
@@ -123,5 +123,5 @@ hr {
     width: 85%;
     margin-left: 7.5%;
     margin-right: 7.5%;
-    border-color: #4682B4;
+    border-color: #041C47;
 }

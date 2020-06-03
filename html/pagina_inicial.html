@@ -104,7 +104,7 @@
                 $.ajax({
                     url: "../php/ajax/logout.php",
                     success: function() {
-                        check_session();
+                        window.location.href = "../php/login.php";
                     }
 
                 })
