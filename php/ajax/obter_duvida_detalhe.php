@@ -51,7 +51,7 @@
 	if($row['id_usuario'] == $_SESSION['id'] && ($row['status_id']!=1)){
             $buffer .= "<div>";
 			$buffer .= "<a href=\"atualiza_duvida.html?id={$id}\" style=\"margin:10px 20px\" class=\"btn btn-primary btn-sm\">Editar Pergunta</a>";
-            $buffer .= "<a href=\"excluir_duvida.html?id={$id}\" class=\"btn btn-primary btn-sm\">Excluir Pergunta</a>";
+            $buffer .= "<a href=\"../php/ajax/excluir_duvida.php?id={$id}\" class=\"btn btn-primary btn-sm\">Excluir Pergunta</a>";
             $buffer .= "</div>";
 		}else if($row['status_id'] == 1){
             $buffer .= "<div>";
@@ -79,6 +79,19 @@
      * ----------------------------------------------------------------------------------
      * 
      */
+	 
+	 $buffer = "<div class=\"card mb-4 box-shadow\" style=\"width: 327%;border-radius: 10px;box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.22);text-align: center;\">";
+     $buffer .= "<div class=\"card-body\">";
+     $buffer .= "<h4 class=\"card-title pricing-card-title font-weight-bold mb-3\" style=\"text-align: center;\">Enviar Resposta</h4>";
+	 $buffer .= "<textarea id=\"conteudo\" style=\"width:80%;padding:20px 10px;box-shadow: 0px 0px 5px gray;border:none;resize: none\"></textarea>";
+	 $buffer .= "</div>";
+	 $buffer .= "<a onclick=\"cadastrar_resposta()\" style=\"width:200px;margin: 0 auto;padding:10px 0;margin-bottom:20px\" class=\"btn btn-success btn-sm\">Enviar Pergunta</a>";
+	 $buffer .= "</div>";
+
+     if($row['id_usuario'] != $_SESSION['id'] && ($row['status_id']!=1)){
+	    echo $buffer;
+     }
+	 
     $sql =
         "select 
             duvida_resposta.id as id,

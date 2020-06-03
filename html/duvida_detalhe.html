@@ -105,7 +105,29 @@
                 }
             });
         });
-
+		function cadastrar_resposta(){
+				$.ajax({
+                url: '../php/ajax/cadastrar_resposta.php',
+                method: 'post',
+                data: {
+                    'id': getQuery('id'),
+					'conteudo': $("#conteudo").val()
+                },
+                success: function(data) {
+					$.ajax({
+						url: '../php/ajax/obter_duvida_detalhe.php',
+						method: 'post',
+						data: {
+							'id': getQuery('id')
+						},
+						success: function(data) {
+							//console.log(data);
+							$('#center-div').html(data);
+						}
+					});
+                }
+            });
+		}
         function concluir() {
             if ($("[name='meu_checkbox']").filter(':checked').val() == "respondida") {
                 if (confirm("Sua duvida foi esclarecida?")) {

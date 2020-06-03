@@ -491,7 +491,7 @@ class Duvida
 
         $sql = "delete from duvida where id={$id}";
         $stmt = Conexao::getInstance()->prepare($sql);
-        $stmt->execute();
+        return $stmt->execute();
     }
 
 
