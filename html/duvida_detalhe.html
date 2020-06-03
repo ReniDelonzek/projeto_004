@@ -105,29 +105,31 @@
                 }
             });
         });
-		function cadastrar_resposta(){
-				$.ajax({
+
+        function cadastrar_resposta() {
+            $.ajax({
                 url: '../php/ajax/cadastrar_resposta.php',
                 method: 'post',
                 data: {
                     'id': getQuery('id'),
-					'conteudo': $("#conteudo").val()
+                    'conteudo': $("#conteudo").val()
                 },
                 success: function(data) {
-					$.ajax({
-						url: '../php/ajax/obter_duvida_detalhe.php',
-						method: 'post',
-						data: {
-							'id': getQuery('id')
-						},
-						success: function(data) {
-							//console.log(data);
-							$('#center-div').html(data);
-						}
-					});
+                    $.ajax({
+                        url: '../php/ajax/obter_duvida_detalhe.php',
+                        method: 'post',
+                        data: {
+                            'id': getQuery('id')
+                        },
+                        success: function(data) {
+                            //console.log(data);
+                            $('#center-div').html(data);
+                        }
+                    });
                 }
             });
-		}
+        }
+
         function concluir() {
             if ($("[name='meu_checkbox']").filter(':checked').val() == "respondida") {
                 if (confirm("Sua duvida foi esclarecida?")) {
@@ -235,30 +237,10 @@
                 <!--Editar Pergunta -->
                 <!--</a>-->
 
-            </div>
-            <div class="col-sm-3 col-md-3">
-                <div class="card mb-4 box-shadow" style="width: 130%; border-radius: 10px; box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.22);">
-                    <div class="card-body" style="text-align: right;">
-                        <h5 class="card-title pricing-card-title font-weight-bold mb-3" style="text-align: center;">PERGUNTAS SEMELHANTES
-                        </h5>
 
-                        <h6 class="card-title pricing-card-title mb-0"><img src="../imagens/icons/usuario.png" class="mr-3" alt=""> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsu</h6>
-                        <button type="button" class="btn btn-primary btn-sm" style="background-color: rgb(17, 226, 88); border-color: transparent; border-radius: 20px;height: 7%;font-size: 0.6em;padding: 0px 8px 0px 8px; text-align: right;">LEIA
-              MAIS</button>
 
-                        <h6 class="card-title pricing-card-title mb-0"><img src="../imagens/icons/usuario.png" class="mr-3" alt=""> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsu</h6>
-                        <button type="button" class="btn btn-primary btn-sm" style="background-color: rgb(17, 226, 88); border-color: transparent; border-radius: 20px;height: 7%;font-size: 0.6em;padding: 0px 8px 0px 8px; text-align: right;">LEIA
-              MAIS</button>
-                        <h6 class="card-title pricing-card-title mb-0"><img src="../imagens/icons/usuario.png" class="mr-3" alt=""> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsu</h6>
-                        <button type="button" class="btn btn-primary btn-sm" style="background-color: rgb(17, 226, 88); border-color: transparent; border-radius: 20px;height: 7%;font-size: 0.6em;padding: 0px 8px 0px 8px; text-align: right;">LEIA
-              MAIS</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <script src="../assets/js/vendor/popper.min.js"></script>
-        <script src="../dist/js/bootstrap.min.js"></script>
+                <script src="../assets/js/vendor/popper.min.js"></script>
+                <script src="../dist/js/bootstrap.min.js"></script>
 </body>
 
 </html>

@@ -17,13 +17,12 @@
     <link rel="stylesheet" type="text/css" href="../css/style.css">
     <title>Perguntas</title>
     <script>
-    
         function getQuery(q) {
             return (window.location.search.match(new RegExp('[?&]' + q + '=([^&]+)')) || [, null])[1];
         }
         $(document).ready(function() {
             $.ajax({
-                
+
                 url: '../php/ajax/listar_duvida_atualizar.php',
                 method: 'post',
                 data: {
@@ -35,31 +34,28 @@
                 }
             });
         });
-    
+
 
         function alterar() {
-        var dados = $('#cartao_pergunta').find("input, select").serialize();
-        var id =  getQuery('id');
-
-        
-        dados = "id="+id+"&"+dados;
-        console.log(dados);
+            var dados = $('#cartao_pergunta').find("input, select").serialize();
+            var id = getQuery('id');
 
 
-        $.ajax({
-            url: '../php/ajax/atualizar_duvida.php',
-            type: 'POST',
-            data: dados,
-            success: function(data) {
-                
-            }
-
-        });
-        window.location.href = "http://localhost/projeto_004/";
+            dados = "id=" + id + "&" + dados;
+            console.log(dados);
 
 
+            $.ajax({
+                url: '../php/ajax/atualizar_duvida.php',
+                type: 'POST',
+                data: dados,
+                success: function(data) {
+                    window.location.href = "../html/pagina_inicial.html";
+                }
 
-    }
+            });
+
+        }
     </script>
 </head>
 
@@ -69,9 +65,9 @@
     </nav>
     <!--End Nav Menu superior-->
 
-    <div id = "center-div" class="container">
-        
-        
+    <div id="center-div" class="container">
+
+
     </div>
 </body>
 

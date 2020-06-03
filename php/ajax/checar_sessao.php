@@ -10,5 +10,3 @@
  {  
       echo '1';     //session expired  
  }
- 
- ?>
